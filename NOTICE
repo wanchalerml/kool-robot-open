@@ -1,0 +1,37 @@
+KOOL Robot
+Copyright (c) 2026 HASHBX GLOBAL COMPANY LIMITED and KOOL Robot contributors.
+
+Licensing (see README.md "Licences"):
+  - Hardware design sources (cad/, STEP/STL, frame and foot designs): CERN-OHL-S-2.0
+  - Software (sim/, ui/, tools/, voice stack): Apache-2.0
+  - Documentation and images (docs/, *.md, images): CC BY-SA 4.0
+  - third_party/: original licences, unchanged (see below)
+
+This project is derived from / builds on:
+
+1. K-Bot by K-Scale Labs (https://github.com/kscalelabs)
+   - kscalelabs/kbot @ 76aba70e3372fecf3583ed6dbe5f379d44c8511c
+       hardware: CERN-OHL-S-2.0 (third_party/kscale/kbot/LICENSE-HW)
+       software: MIT (third_party/kscale/kbot/LICENSE)
+   - kscalelabs/kbot-joystick @ 211f9a2e430d1dfbdc04e3f308614a829e14e559
+       MIT (third_party/kscale/kbot-joystick/LICENSE)
+       only robot/kbot (MJCF model + meshes) is included
+   Modifications by KOOL Robot (CERN-OHL-S section 3.3 notice):
+   - K-Bot proportions (1.40 m) are reused as the reference body for a
+     motor-less "show v1" robot with hand-posable locking joints
+     (Hirth disc + knob, pin + clamp) instead of RobStride actuators.
+   - Feet are replaced by wheel feet: one 5" hub drive wheel mounted outboard
+     at +/-22 cm and one caster per foot, with batteries in the feet.
+   - A chest bezel for a 7" touchscreen and a new outer shell are added.
+   K-Scale repositories without a licence file (kbot-inference,
+   kscale-assets) are NOT redistributed here; see their upstream sources.
+
+2. Berkeley Humanoid Lite (https://github.com/HybridRobotics/Berkeley-Humanoid-Lite)
+   MIT (code) + CC BY-SA 4.0 (design files). Earlier shell experiments
+   used it as a reference.
+
+Concept image docs/images/concept_gemini_r3.jpg was generated with Google
+Gemini (AI-generated; the person shown is not a real individual).
+
+This design is provided WITHOUT ANY WARRANTY, to the extent permitted by
+applicable law (see the licence texts and SAFETY.md).

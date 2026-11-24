@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<title>Show v1 – chest screen mock (talk / QR / slides)</title>
+<style>
+  :root{--bg:#0b1220;--card:#121c2e;--ink:#eaf1ff;--dim:#8da2c0;--acc:#38d39f;--warn:#ffb020;--you:#5aa9ff}
+  *{box-sizing:border-box;margin:0}
+  body{background:#222;font-family:Garuda,Loma,"Noto Sans",sans-serif;color:var(--ink)}
+  .scr{width:1280px;height:720px;background:var(--bg);position:relative;overflow:hidden;margin-bottom:30px}
+  .bar{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:22px;padding:0 28px;background:#0e1729;border-bottom:1px solid #1d2a44;font-size:22px;color:var(--dim)}
+  .bar .brand{color:var(--ink);font-weight:700;margin-right:auto}
+  .dot{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+  .tag{position:absolute;right:28px;bottom:18px;font-size:18px;color:#56688a}
+  /* talk */
+  .face{position:absolute;left:60px;top:110px;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#16304f,#0b1220 70%);display:flex;align-items:center;justify-content:center;gap:70px}
+  .eye{width:62px;height:110px;border-radius:40px;background:var(--acc);box-shadow:0 0 30px var(--acc)}
+  .wave{position:absolute;left:80px;top:470px;width:290px;height:70px;display:flex;align-items:center;gap:7px}
+  .wave i{flex:1;background:var(--acc);border-radius:4px;opacity:.85}
+  .state{position:absolute;left:60px;top:560px;width:330px;text-align:center;font-size:30px;color:var(--acc)}
+  .cap{position:absolute;left:440px;right:40px;top:90px;bottom:120px;display:flex;flex-direction:column;justify-content:flex-end;gap:18px}
+  .b{max-width:92%;padding:16px 22px;border-radius:18px;font-size:30px;line-height:1.35}
+  .b.u{align-self:flex-end;background:#16345a;color:#d6e8ff}
+  .b.r{align-self:flex-start;background:var(--card);border:1px solid #23395c}
+  .b.live{opacity:.7;font-style:italic}
+  .menu{position:absolute;left:440px;right:40px;bottom:28px;height:72px;display:flex;gap:16px}
+  .menu div{flex:1;border-radius:16px;background:#17243b;border:1px solid #2a3d61;display:flex;align-items:center;justify-content:center;font-size:24px}
+  /* qr */
+  .qrwrap{position:absolute;left:80px;top:100px;width:500px;height:500px;background:#fff;border-radius:24px;padding:28px}
+  .qrwrap canvas{width:100%;height:100%;image-rendering:pixelated}
+  .qrtxt{position:absolute;left:640px;top:120px;right:60px}
+  .qrtxt h1{font-size:58px;line-height:1.2;margin-bottom:22px}
+  .qrtxt p{font-size:30px;color:var(--dim);line-height:1.5}
+  .qrtxt .url{margin-top:30px;font-size:30px;color:var(--you)}
+  .count{position:absolute;left:640px;bottom:110px;font-size:26px;color:var(--warn)}
+  /* slides */
+  .slide{position:absolute;left:0;right:0;top:56px;bottom:70px;background:linear-gradient(135deg,#1b3a6b,#0d1b33);display:flex;flex-direction:column;justify-content:center;padding:0 90px}
+  .slide small{font-size:24px;color:#9fc3ff;letter-spacing:2px}
+  .slide h1{font-size:72px;margin:12px 0 18px}
+  .slide p{font-size:32px;color:#c9d8f2}
+  .ctrl{position:absolute;left:0;right:0;bottom:0;height:70px;background:#0e1729;display:flex;align-items:center;padding:0 28px;gap:18px;font-size:22px;color:var(--dim)}
+  .prog{flex:1;height:8px;background:#22314f;border-radius:4px;overflow:hidden}
+  .prog i{display:block;width:40%;height:100%;background:var(--acc)}
+  .mini{position:absolute;right:36px;top:80px;background:#0b1220cc;border:1px solid #2a3d61;border-radius:14px;padding:10px 16px;font-size:22px;color:var(--acc)}
+</style></head><body>
+
+<!-- 1) TALK MODE -->
+<div class="scr" id="talk">
+  <div class="bar"><span class="brand">KOOL Robot</span>
+    <span><span class="dot" style="background:var(--acc)"></span>กำลังฟัง</span>
+    <span>📶 Wi-Fi ดี</span><span>🔋 78% · ~5 ชม.</span><span>🔊 70%</span></div>
+  <div class="face"><div class="eye"></div><div class="eye"></div></div>
+  <div class="wave" id="wave"></div>
+  <div class="state">● กำลังฟัง…</div>
+  <div class="cap">
+    <div class="b u">บูธนี้ขายอะไรครับ</div>
+    <div class="b r">สวัสดีครับ บูธนี้แนะนำรถไฟฟ้าให้เช่าและซื้อขายครับ สนใจรุ่นไหนเป็นพิเศษไหมครับ</div>
+    <div class="b u live">มีรุ่นที่วิ่งได้ไกล…</div>
+  </div>
+  <div class="menu"><div>🙋 ถามได้เลย</div><div>📱 สแกน QR</div><div>🖼️ ดูสไลด์</div><div>🌐 EN / TH</div></div>
+  <div class="tag" style="top:64px;bottom:auto">โหมดคุย · คำบรรยายสด + สถานะ</div>
+</div>
+
+<!-- 2) QR MODE -->
+<div class="scr" id="qr">
+  <div class="bar"><span class="brand">KOOL Robot</span>
+    <span><span class="dot" style="background:var(--you)"></span>รอสแกน</span>
+    <span>📶 Wi-Fi ดี</span><span>🔋 78%</span></div>
+  <div class="qrwrap"><canvas id="qrc" width="29" height="29"></canvas></div>
+  <div class="qrtxt">
+    <h1>สแกนรับส่วนลด<br>ทดลองขับฟรี</h1>
+    <p>ลงทะเบียนในบูธวันนี้<br>รับสิทธิ์ทันที (ตัวอย่างข้อความลูกค้า)</p>
+    <div class="url">example.com/booth</div>
+  </div>
+  <div class="count">⏱ กลับโหมดคุยอัตโนมัติใน 20 วินาที · แตะเพื่อค้างไว้</div>
+  <div class="tag">โหมด QR · QR ~55 มม. บนจอ 7" · สแกนได้ ~0.5–1 ม.</div>
+</div>
+
+<!-- 3) SLIDE MODE -->
+<div class="scr" id="slides">
+  <div class="bar"><span class="brand">KOOL Robot</span>
+    <span><span class="dot" style="background:var(--warn)"></span>เล่นสไลด์</span>
+    <span>📶 Wi-Fi ดี</span><span>🔋 78%</span></div>
+  <div class="slide"><small>CLIENT SLIDE 2 / 5</small>
+    <h1>ชาร์จ 30 นาที วิ่งได้ 300 กม.</h1>
+    <p>สไลด์/วิดีโอของลูกค้า · เปิดจากไฟล์ใน USB หรือลิงก์ที่ตั้งไว้</p></div>
+  <div class="mini">🎙 พูด “หุ่นยนต์” เพื่อถามได้ตลอด</div>
+  <div class="ctrl"><span>◀</span><span>⏸</span><span>▶</span><div class="prog"><i></i></div><span>2 / 5 · เปลี่ยนทุก 8 วิ</span></div>
+  <div class="tag" style="bottom:84px">โหมดสไลด์ · มีเสียงพูดแทรกได้</div>
+</div>
+
+<script>
+  const w=document.getElementById('wave');
+  [20,38,55,30,62,48,26,58,40,22,50,34].forEach(h=>{const i=document.createElement('i');i.style.height=h+'px';w.appendChild(i)});
+  // placeholder QR-like pattern (NOT a real code)
+  const c=document.getElementById('qrc').getContext('2d');let s=7;
+  const rnd=()=>{s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff};
+  c.fillStyle='#fff';c.fillRect(0,0,29,29);c.fillStyle='#000';
+  for(let y=0;y<29;y++)for(let x=0;x<29;x++)if(rnd()>.52)c.fillRect(x,y,1,1);
+  const finder=(x,y)=>{c.fillStyle='#000';c.fillRect(x,y,7,7);c.fillStyle='#fff';c.fillRect(x+1,y+1,5,5);c.fillStyle='#000';c.fillRect(x+2,y+2,3,3)};
+  c.fillStyle='#fff';[[0,0],[21,0],[0,21]].forEach(([x,y])=>c.fillRect(x?x-1:x,y?y-1:y,8,8));
+  finder(0,0);finder(22,0);finder(0,22);
+</script>
+</body></html>
