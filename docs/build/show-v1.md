@@ -111,6 +111,8 @@
 
 ภาพร่างโมดูลเท้า: `cad/out/show_v1_foot_module_sketch.png`
 
+**CAD เท้าล้อ v1:** `python3 cad/show_v1/wheel_foot_v1.py` → DXF แผ่นอะลูมิเนียม (ล่าง 5 มม. · บน 6 มม. · หางปลา 8 มม.) + STEP ซ็อกเก็ตขา (งานกลึง) + รายงานเช็กชน/น้ำหนัก/มุมล้ม `cad/out/show_v1_wheel_foot_report.txt` · ฐานล้อ 32 ซม. นับถึงจุดแตะพื้นล้อหมุนตามตอนถอยหลัง (แย่สุด) · วัดล้อหมุนตาม/SHF10/โซลินอยด์จริงก่อนส่งตัด
+
 ## ระบบเสียง
 
 ```
@@ -126,7 +128,7 @@
 
 **English summary:** Show v1 is 1.40 m tall and weighs about 25 kg, with its centre of mass at 0.50 m. Each foot has a 5" hub wheel with a fail-safe brake, mounted outboard at ±22 cm, plus a rear caster on a 32 cm wheelbase. The robot tips at 23.9° sideways and 17.9° fore-aft.
 
-- **Foot suspension:** two guided die-spring units per foot (12 mm travel) with lock pins for standing still. It still tips at ≥22.4° sideways and ≥15.7° fore-aft when fully compressed. The foot module is swappable.
+- **Foot suspension:** two guided die-spring units per foot (12 mm travel) with lock pins for standing still. It still tips at ≥22.4° sideways and ≥15.7° fore-aft when fully compressed. The foot module is swappable. CAD: `cad/show_v1/wheel_foot_v1.py` (DXF plates, turned leg socket STEP, clash/mass/tip report).
 - **Terrain:** indoor floors and smooth concrete; square edges up to 10 mm, ramped cable covers up to 25–30 mm, 5° ramps at low speed. No grass, gravel or stairs.
 
 - **Joints:** no joint motors. Joints lock mechanically (Hirth discs on arms/neck, pin + clamp on legs), so the robot stays standing if power is lost.
