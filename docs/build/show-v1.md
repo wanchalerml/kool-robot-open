@@ -12,8 +12,10 @@
 | น้ำหนัก | ~25 กก. |
 | จุดศูนย์ถ่วง | ~0.50 ม. (แบตและล้ออยู่ในเท้า) |
 | ล้อ | เท้าละ 1 ล้อขับ (hub 5" มีเบรกไฟฟ้า ติดด้านนอกเท้า **±22 ซม.** จากกลางตัว) + 1 ล้อหมุนตามด้านหลัง |
-| ระยะล้อหน้า-หลัง | 30 ซม. |
-| มุมล้ม | ด้านข้าง **23.9°** · หน้า-หลัง **16.8°** (`sim/kbot/show_v1_tip.py`) |
+| ระยะล้อหน้า-หลัง | 32 ซม. |
+| มุมล้ม | ด้านข้าง **23.9°** · หน้า-หลัง **17.9°** (`sim/kbot/show_v1_tip.py`, `show_v1_terrain.py`) |
+| โช้คเท้า | เท้าละ 2 ชุดสปริงแม่พิมพ์ Ø20×64 (19.6 N/mm) ยุบได้สูงสุด 12 มม. + สลักล็อกตอนจอด · ยุบสุดแล้วยังล้มข้างที่ ≥22.4° หน้า-หลัง ≥15.7° |
+| โมดูลเท้า | ถอดเปลี่ยนได้: น็อต M6 ×4 + หมุด ×2 + XT60 + ขั้วสัญญาณ 6 ขา |
 | ความเร็ว | จำกัด 0.5 ม./วิ · หยุดใน 0.5 วิ เทียบเท่าการเอียง ~5.8° |
 | ข้อต่อ | ไม่มีมอเตอร์ · ขา: สลัก + แคลมป์ · แขนและคอ: จานฟันเฟือง Hirth + ลูกบิด M8 → **ไฟดับก็ยังยืนได้** |
 | สมอง | Raspberry Pi 5 + ไมค์อาร์เรย์ + ลำโพง + ตาไฟ LED + จอสัมผัส 7" |
@@ -96,6 +98,19 @@
 | งานบูธปกติ | ~33 W | ~12 ชม. |
 | เคลื่อนที่เยอะ | ~60 W | ~7 ชม. |
 
+## พื้นที่ใช้งาน (รุ่นแรก)
+
+| สภาพพื้น | ผล |
+|---|---|
+| พื้นห้าง / กระเบื้อง / ไม้ / พรมบาง / ลานปูนเรียบ | ✅ |
+| ขอบตั้งฉาก | ≤ 1 ซม. |
+| รางสายไฟมีเนิน / แผ่นลาด | ≤ 2.5–3 ซม. (ขับช้า) |
+| ทางลาด 5° | ได้ — จำกัด 0.3 ม./วิ และเบรก ≤ 0.5 ม./วิ² |
+| เอียงข้าง (ขับ) | ห้าม |
+| หญ้า / กรวด / ทราย / บันได | ❌ |
+
+ภาพร่างโมดูลเท้า: `cad/out/show_v1_foot_module_sketch.png`
+
 ## ระบบเสียง
 
 ```
@@ -109,7 +124,10 @@
 
 ---
 
-**English summary:** Show v1 is 1.40 m tall and weighs about 25 kg, with its centre of mass at 0.50 m. Each foot has a 5" hub wheel with a fail-safe brake, mounted outboard at ±22 cm, plus a rear caster. The robot tips at 23.9° sideways and 16.8° fore-aft.
+**English summary:** Show v1 is 1.40 m tall and weighs about 25 kg, with its centre of mass at 0.50 m. Each foot has a 5" hub wheel with a fail-safe brake, mounted outboard at ±22 cm, plus a rear caster on a 32 cm wheelbase. The robot tips at 23.9° sideways and 17.9° fore-aft.
+
+- **Foot suspension:** two guided die-spring units per foot (12 mm travel) with lock pins for standing still. It still tips at ≥22.4° sideways and ≥15.7° fore-aft when fully compressed. The foot module is swappable.
+- **Terrain:** indoor floors and smooth concrete; square edges up to 10 mm, ramped cable covers up to 25–30 mm, 5° ramps at low speed. No grass, gravel or stairs.
 
 - **Joints:** no joint motors. Joints lock mechanically (Hirth discs on arms/neck, pin + clamp on legs), so the robot stays standing if power is lost.
 - **Electronics:** Raspberry Pi 5 running a cloud voice pipeline (Azure STT → LLM → Azure TTS, Thai), and a 7" chest touchscreen in a printable bezel.
