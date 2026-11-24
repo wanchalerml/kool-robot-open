@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | สูง | 1.40 ม. (สัดส่วนตาม K-Bot) |
-| น้ำหนัก | ~25 กก. |
+| น้ำหนัก | ~30–32 กก. (รวมเท้าล้อมีโช้ค) |
 | จุดศูนย์ถ่วง | ~0.50 ม. (แบตและล้ออยู่ในเท้า) |
 | ล้อ | เท้าละ 1 ล้อขับ (hub 5" มีเบรกไฟฟ้า ติดด้านนอกเท้า **±22 ซม.** จากกลางตัว) + 1 ล้อหมุนตามด้านหลัง |
 | ระยะล้อหน้า-หลัง | 32 ซม. |
@@ -21,54 +21,16 @@
 | สมอง | Raspberry Pi 5 + ไมค์อาร์เรย์ + ลำโพง + ตาไฟ LED + จอสัมผัส 7" |
 | บังคับล้อ | เว็บแอปบนมือถือ → Wi-Fi → ESP32 → ตัวขับล้อ |
 
-## BOM (บาท · ประมาณ)
+## BOM
 
-### ก. ตัว — โครง ข้อต่อล็อกท่า และเปลือก (~13,600–21,700)
-
-| รายการ | จำนวน | ราคา |
-|---|---|---|
-| ท่ออะลูมิเนียม ⌀25×1.5 มม. + แผ่นอะลูมิเนียม 5 มม. (ตัด/เจาะ) | ~6 ม. + แผ่น | 3,000–5,000 |
-| ท่อคาร์บอน ⌀20 มม. (แขน) | ~2 ม. | 600–1,200 |
-| แคลมป์ท่อ ลูกบิด M8 สลัก ลูกปืน และน็อต | 1 ชุด | 2,000–3,000 |
-| เส้น PLA ขาวด้าน (เปลือก) | ~6 กก. | 3,000–4,500 |
-| เส้น PA-CF/PETG-CF (ข้อต่อแขน/หัว) | ~2 กก. | 3,000–4,000 |
-| เส้น PETG ดำ + แผ่นอะคริลิกสีชา (หน้ากาก) | 1 ชุด | 1,000–2,000 |
-| สีรองพื้น สีขาวด้าน และกระดาษทราย | 1 ชุด | 1,000–2,000 |
-
-### ข. ล้อและไฟ (~25,600–33,500)
-
-| รายการ | จำนวน | ราคา |
-|---|---|---|
-| ล้อ hub ZLTECH ZLLG50 5" 24V 200W มี encoder และเบรกไฟฟ้า | 2 | ~9,600–10,200 |
-| ตัวขับคู่ ZLAC8015D (CAN/RS485) | 1 | ~3,800–5,100 |
-| ล้อหมุนตาม ⌀75–100 มม. มีล็อก | 2 | 600–1,200 |
-| แบต LiFePO4 24V 10Ah + BMS + ที่ชาร์จ (ใส่ในเท้าข้างละก้อน ต่อขนาน) | 2 | 7,500–10,500 |
-| ESP32 + โมดูล RS485/CAN | 1 | 500–800 |
-| ปุ่มหยุดฉุกเฉิน + รีเลย์ตัดไฟล้อ + ฟิวส์ + สวิตช์กุญแจ | 1 ชุด | 800–1,500 |
-| สายไฟและขั้วต่อ XT60 | 1 ชุด | 800–1,200 |
-| ค่าส่งและภาษีนำเข้า (ประมาณ) | | 2,000–3,000 |
-
-### ค. เสียงและจอ (~12,800–18,700)
-
-| รายการ | จำนวน | ราคา |
-|---|---|---|
-| Raspberry Pi 5 8GB + Active Cooler + microSD 64GB | 1 | 3,800–4,600 |
-| ตัวแปลงไฟ DC-DC 24V→5V **8A** (Pi 5 ต้องการ 5V 5A และจอดึงไฟผ่าน Pi) | 1 | 300–500 |
-| ไมค์อาร์เรย์ USB 4 ตัว (แบบ ReSpeaker) | 1 | 2,500–3,500 |
-| ลำโพง 10–15W ×2 + แอมป์ | 1 ชุด | 1,200–2,500 |
-| Raspberry Pi Touch Display 2 — 7" | 1 | 2,500–3,200 |
-| ฟิล์มกระจกนิรภัย 7" + insert M3 + โฟม | 1 ชุด | 250–500 |
-| ไฟตา LED WS2812 | 2 | 300–500 |
-| เราเตอร์ 4G พกพา (สำรอง) | 1 | 1,500–2,500 |
-
-**รวมทั้งตัว ~฿52,000–74,000**
+ย้ายไปที่ [bom/show-v1.md](../../bom/show-v1.md) (แหล่งไทย/ต่างประเทศ + ราคาประมาณ) · วิธีประกอบ: [docs/assembly/show-v1.md](../assembly/show-v1.md)
 
 ## พิมพ์ 3 มิติ
 
 - **พิมพ์ได้:**
   - เปลือก (PLA ขาว)
   - หัวและหน้ากาก (PETG ดำ)
-  - กรอบจอ (`cad/show_v1/chest_screen.py`, PETG/ASA)
+  - กรอบจอ (`hardware/cad/show_v1/chest_screen.py`, PETG/ASA)
   - จาน Hirth และตัวเรือนข้อแขน/คอ (PA-CF)
   - มือ (ท่าคงที่ เปลี่ยนเป็นชิ้นสวมได้)
 - **ห้ามพิมพ์:**
@@ -81,10 +43,10 @@
 
 ## จอหน้าอก
 
-- **กรอบ:** `PANEL=pi7 PANEL_T=<ความหนาที่วัดจริง> python3 cad/show_v1/chest_screen.py`
+- **กรอบ:** `PANEL=pi7 PANEL_T=<ความหนาที่วัดจริง> python3 hardware/cad/show_v1/chest_screen.py`
   - ⚠️ ความหนาจอ 14 มม. ในไฟล์เป็นค่าสมมติ ต้องวัดจอจริงก่อนพิมพ์
 - **ระบายความร้อน:** เว้นช่องลม 8 มม. หลังจอ · ลมเข้าด้านล่าง ออกด้านบน · Pi ควรไม่เกิน ~75 °C หลังเปิด 2 ชม.
-- **หน้าจอ 3 โหมด** (ภาพร่าง `ui/chest_screen/mock.html`):
+- **หน้าจอ 3 โหมด** (ภาพร่าง `software/ui/chest_screen/mock.html`):
   - คุย: คำบรรยายสด + สถานะ + ปุ่มปิดไมค์
   - QR
   - สไลด์
@@ -109,9 +71,9 @@
 | เอียงข้าง (ขับ) | ห้าม |
 | หญ้า / กรวด / ทราย / บันได | ❌ |
 
-ภาพร่างโมดูลเท้า: `cad/out/show_v1_foot_module_sketch.png`
+ภาพร่างโมดูลเท้า: `hardware/cad/out/show_v1_foot_module_sketch.png`
 
-**CAD เท้าล้อ v1:** `python3 cad/show_v1/wheel_foot_v1.py` → DXF แผ่นอะลูมิเนียม (ล่าง 5 มม. · บน 6 มม. · หางปลา 8 มม.) + STEP ซ็อกเก็ตขา (งานกลึง) + รายงานเช็กชน/น้ำหนัก/มุมล้ม `cad/out/show_v1_wheel_foot_report.txt` · ฐานล้อ 32 ซม. นับถึงจุดแตะพื้นล้อหมุนตามตอนถอยหลัง (แย่สุด) · วัดล้อหมุนตาม/SHF10/โซลินอยด์จริงก่อนส่งตัด
+**CAD เท้าล้อ v1:** `python3 hardware/cad/show_v1/wheel_foot_v1.py` → DXF แผ่นอะลูมิเนียม (ล่าง 5 มม. · บน 6 มม. · หางปลา 8 มม.) + STEP ซ็อกเก็ตขา (งานกลึง) + รายงานเช็กชน/น้ำหนัก/มุมล้ม `hardware/cad/out/show_v1_wheel_foot_report.txt` · ฐานล้อ 32 ซม. นับถึงจุดแตะพื้นล้อหมุนตามตอนถอยหลัง (แย่สุด) · วัดล้อหมุนตาม/SHF10/โซลินอยด์จริงก่อนส่งตัด
 
 ## ระบบเสียง
 
@@ -121,17 +83,17 @@
 
 - ไม่เก็บไฟล์เสียง และไม่มีกล้อง
 - ใช้ key ของบัญชีตัวเอง เก็บในไฟล์ `.env` ห้าม commit
-- ผู้ใช้งานต้องติดป้ายแจ้งความเป็นส่วนตัวเอง (PDPA หรือกฎหมายในประเทศนั้น) — ดูแม่แบบ `ui/pdpa_sign/`
+- ผู้ใช้งานต้องติดป้ายแจ้งความเป็นส่วนตัวเอง (PDPA หรือกฎหมายในประเทศนั้น) — ดูแม่แบบ `software/ui/pdpa_sign/`
 - บริการอื่นที่ใช้แทนได้: Google Cloud Speech หรือผู้ให้บริการเสียงไทยในประเทศ
 
 ---
 
 **English summary:** Show v1 is 1.40 m tall and weighs about 25 kg, with its centre of mass at 0.50 m. Each foot has a 5" hub wheel with a fail-safe brake, mounted outboard at ±22 cm, plus a rear caster on a 32 cm wheelbase. The robot tips at 23.9° sideways and 17.9° fore-aft.
 
-- **Foot suspension:** two guided die-spring units per foot (12 mm travel) with lock pins for standing still. It still tips at ≥22.4° sideways and ≥15.7° fore-aft when fully compressed. The foot module is swappable. CAD: `cad/show_v1/wheel_foot_v1.py` (DXF plates, turned leg socket STEP, clash/mass/tip report).
+- **Foot suspension:** two guided die-spring units per foot (12 mm travel) with lock pins for standing still. It still tips at ≥22.4° sideways and ≥15.7° fore-aft when fully compressed. The foot module is swappable. CAD: `hardware/cad/show_v1/wheel_foot_v1.py` (DXF plates, turned leg socket STEP, clash/mass/tip report).
 - **Terrain:** indoor floors and smooth concrete; square edges up to 10 mm, ramped cable covers up to 25–30 mm, 5° ramps at low speed. No grass, gravel or stairs.
 
 - **Joints:** no joint motors. Joints lock mechanically (Hirth discs on arms/neck, pin + clamp on legs), so the robot stays standing if power is lost.
 - **Electronics:** Raspberry Pi 5 running a cloud voice pipeline (Azure STT → LLM → Azure TTS, Thai), and a 7" chest touchscreen in a printable bezel.
-- **Power:** 2 × 24 V 10 Ah LiFePO4 batteries in the feet give roughly 7–12 h.
-- **Budget:** parts cost roughly THB 52–74k.
+- **Power:** 2 × 24 V 10 Ah LiFePO4 batteries (kept low in the legs for stability) give roughly 7–12 h.
+- **Parts:** see [bom/](../../bom/).

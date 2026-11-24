@@ -2,9 +2,9 @@ KOOL Robot
 Copyright (c) 2026 HASHBX GLOBAL COMPANY LIMITED and KOOL Robot contributors.
 
 Licensing (see README.md "Licences"):
-  - Hardware design sources (cad/, STEP/STL, frame and foot designs): CERN-OHL-S-2.0
-  - Software (sim/, ui/, tools/, voice stack): Apache-2.0
-  - Documentation and images (docs/, *.md, images): CC BY-SA 4.0
+  - Hardware design sources (hardware/, STEP/STL/DXF): CERN-OHL-S-2.0 (LICENSE-HW)
+  - Software (software/, sim/, scripts): Apache-2.0 (LICENSE)
+  - Documentation and images (docs/, devlog/, bom/, *.md, images): CC BY-SA 4.0
   - third_party/: original licences, unchanged (see below)
 
 This project is derived from / builds on:
@@ -20,8 +20,12 @@ This project is derived from / builds on:
    - K-Bot proportions (1.40 m) are reused as the reference body for a
      motor-less "show v1" robot with hand-posable locking joints
      (Hirth disc + knob, pin + clamp) instead of RobStride actuators.
-   - Feet are replaced by wheel feet: one 5" hub drive wheel mounted outboard
-     at +/-22 cm and one caster per foot, with batteries in the feet.
+   - Feet are replaced by sprung wheel feet: one 5" hub drive wheel mounted
+     outboard at +/-22 cm and one caster per foot, two die-spring units and
+     solenoid locks per foot, and a quick-release leg flange.
+   - An "exposed motor" body: RobStride-sized joint housings (dummy housings
+     with locking joints in v1) at the K-Bot joint positions, carbon-tube links
+     with thin shells, a single central spine and a backpack.
    - A chest bezel for a 7" touchscreen and a new outer shell are added.
    K-Scale repositories without a licence file (kbot-inference,
    kscale-assets) are NOT redistributed here; see their upstream sources.
