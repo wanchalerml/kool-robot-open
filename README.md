@@ -15,7 +15,7 @@
 - **ท่อนบนร่างคนบนเท้าล้อ** — เท้าละ 2 ล้อขับ (ขับ 4 ล้อ) + ช่วงล่างสปริง · ขายังไม่เดินในรุ่นแรก
 - **หน้าดำเต็มหน้า + ตาไฟ** ไม่ทำหน้าเหมือนคนจริง · **จอสัมผัส 8" ที่อก ก้ม-เงยได้**
 - **รุ่นแรก (V1) ทำให้สวยตามภาพต้นแบบ** — เปลือกขึ้นรูปจากโมเดล 3 มิติที่สร้างจากภาพแนวคิด · ปุ่มข้อสีเทา · ข้อแขนปรับท่าด้วยมือ (ข้อฝืด)
-- **ชิ้นส่วนพิมพ์ 3 มิติเองได้** · แบต Li-ion 21700 ซ่อนในหน้าแข้ง (จุดศูนย์ถ่วงต่ำ)
+- **ชิ้นส่วนพิมพ์ 3 มิติเองได้** · แบต Li-ion 21700 ซ่อนในหน้าแข้ง (จุดศูนย์ถ่วงต่ำ · เติมเพิ่มทีหลังได้)
 - รุ่นเดินได้ในอนาคต (V3) จะอิงแบบเปิด **K-Bot** ของ K-Scale Labs (ดู [NOTICE](NOTICE))
 
 **English:** KOOL Robot is a 1.40 m open-source show humanoid for events and showrooms. It talks in Thai through a push-to-talk microphone, cloud speech and an LLM. V1 is a human-like upper body on wheeled feet (two driven wheels per foot with spring suspension), a full black face with light-up eyes and a tilting 8" chest touchscreen. V1 focuses on matching the concept look; arm joints are hand-posable friction joints. A walking version (V3) will follow the open K-Bot design by K-Scale Labs.
@@ -25,7 +25,7 @@
 | ส่วน | สถานะ |
 |---|---|
 | คำนวณมุมล้ม พื้นที่ใช้งาน สัดส่วน (`sim/`) | ✅ ใช้ได้ |
-| CAD เท้าล้อ V1: 2 ล้อ/เท้า · คานกระดก ±10° · ข้อเท้ายุบ 25 มม. (`hardware/cad/show_v1/foot_v1.py`) | ✅ ฉบับร่าง · ยังไม่ทดสอบจริง |
+| CAD เท้าล้อ V1 รอบ 3: 2 ล้อ/เท้า · คานล็อก TPU · สปริงอัดค้าง · ToF + รายงานการทรงตัว (`hardware/cad/show_v1/foot_v1.py`) | ✅ ฉบับร่าง · ยังไม่ทดสอบจริง |
 | CAD กล่องจออก 8" ก้ม-เงย (ข้อฝืด + ยางกันชน TPU) | ✅ ฉบับร่าง (STL) · ยังไม่ได้พิมพ์ทดสอบ |
 | ภาพร่างหน้าจอ + ไฟล์ตั้งค่างาน (`software/`) | ✅ ฉบับร่าง |
 | เปลือก V1 ตามภาพต้นแบบ + ปุ่มข้อเทา + โครงใน | 🟡 กำลังออกแบบ |
