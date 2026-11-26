@@ -1,6 +1,11 @@
 """Show v1 chest screen bezel + back plate (draft, build123d).
 
-Default panel = Raspberry Pi Touch Display 2, 7" (landscape on the chest).
+Default panel (26 พ.ย. 2569 20:55) = Waveshare 8inch DSI LCD (C) 1280x800 (landscape on the chest).
+  glass 194 x 120 mm (ค่าเดียวกับรุ่น HDMI 8DP-CAPLCD: 194.00 x 119.00) · display area 172.22 x 107.64 · 352 g
+  PANEL_T = 12 mm placeholder -> MEASURE the real unit (และเทียบแบบ 2D ของรุ่น DSI (C)) before printing.
+  ขนาดกรอบนอก 206.8 x 132.8 → อยู่ในขอบอก shell2 (ดู cad/tools/chest_screen_fit.py · รอบจอใหญ่สุด ~230 x 144)
+
+Old default = Raspberry Pi Touch Display 2, 7" (PANEL=pi7).
   outline 189.32 x 120.24 mm, active 154.56 x 86.94 mm (datasheet)
   PANEL_T (thickness) = 14 mm placeholder -> MEASURE the real unit before printing.
 
@@ -20,11 +25,12 @@ import os
 from build123d import *
 
 PANELS = {
+    "ws8c":   dict(W=194.00, H=120.00, AW=172.22, AH=107.64, T=12.0),   # MEASURE outline/thickness
     "pi7":    dict(W=189.32, H=120.24, AW=154.56, AH=86.94, T=14.0),
     "pi10":   dict(W=247.30, H=161.80, AW=216.60, AH=135.40, T=14.0),
     "ws10ep": dict(W=239.00, H=147.00, AW=217.18, AH=135.59, T=10.0),
 }
-name = os.environ.get("PANEL", "pi7")
+name = os.environ.get("PANEL", "ws8c")
 P = PANELS[name]
 PANEL_T = float(os.environ.get("PANEL_T", P["T"]))
 

@@ -12,7 +12,7 @@
   - หน้าแปลนถอดเร็ว: ซ็อกเก็ตงานกลึง (ยึดถาวรกับท่อขา ⌀25) หน้าแปลน 90×90 → แผ่นบน ด้วย M6 ×4 + หมุดนำ ⌀6 ×2
     + ปลั๊ก XT60 + GX16 6 ขา (ห้อยผ่านรูยาง) → ถอดเปลี่ยนชุดเท้าได้ ~10 นาที
 
-แบบล้อ: docs/show-v1/ref/zllg50asm200_v1_drawing.png (ร้าน aifitlab · ZLLG50ASM200_V1.0-Drawing.pdf)
+แบบล้อ: docs/show-v1/ref/zllg50asm200_v1_drawing.png (ZLLG50ASM200_V1.0-Drawing.pdf)
 ชิ้นที่ขนาด "ประมาณ" ต้องเทียบของจริงก่อนส่งตัด → ดูหัวข้อ VERIFY ในรายงาน
 
 ใช้: python3 cad/show_v1/wheel_foot_v1.py
