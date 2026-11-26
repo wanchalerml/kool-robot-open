@@ -1,4 +1,8 @@
+<p align="center"><img src="brand/logo/koolab-wordmark.svg" alt="KOOLAB" width="420"></p>
+
 # KOOL Robot — หุ่นยนต์ร่างคนพูดไทย แบบเปิด (open source) 🇹🇭
+
+> ™ ชื่อ KOOLAB / Kool mini และโลโก้ไม่อยู่ในสัญญาอนุญาตเปิด · Names and logo are trademarks, not open-licensed → [TRADEMARKS.md](TRADEMARKS.md)
 
 > ⚠️ **กำลังพัฒนา / Work in progress** — ยังไม่มีหุ่นตัวจริงที่ประกอบเสร็จ · ตอนนี้มีแบบ CAD การคำนวณ และซอฟต์แวร์ฉบับร่าง · ตัวเลขยังเปลี่ยนได้
 > No assembled robot yet. What exists today: CAD, calculations and draft software. Numbers may still change.
@@ -80,6 +84,7 @@ python3 hardware/cad/show_v1/foot_v1.py                # เท้าล้อ V
 | โค้ด (`software/`, `sim/`, สคริปต์) | [Apache-2.0](LICENSE) |
 | เอกสารและภาพ (`docs/`, `devlog/`, `bom/`, `*.md`, ภาพ) | [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt) |
 | `third_party/` | ตามไฟล์สัญญาอนุญาตเดิมในแต่ละโฟลเดอร์ (ดู [NOTICE](NOTICE)) |
+| `brand/logo/` (โลโก้ KOOLAB) | **สงวนสิทธิ์ ไม่ใช่สัญญาเปิด** · All rights reserved ([TRADEMARKS.md](TRADEMARKS.md)) |
 
-- ชื่อ "KOOL Robot" ไม่รวมอยู่ในสัญญาอนุญาตเปิด ดู [TRADEMARK.md](TRADEMARK.md)
+- ชื่อ "KOOLAB" / "Kool mini" / "KOOL Robot" และโลโก้ KOOLAB ไม่รวมอยู่ในสัญญาอนุญาตเปิด ดู [TRADEMARKS.md](TRADEMARKS.md) · Names and logo: see [TRADEMARKS.md](TRADEMARKS.md)
 - ห้ามใช้ชื่อ K-Bot / K-Scale เป็นชื่อสินค้าที่สร้างจากแบบนี้ · Do not use the K-Bot or K-Scale names as product names.
