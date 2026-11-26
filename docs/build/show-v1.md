@@ -12,6 +12,7 @@
 |---|---|
 | สูง | 1.40 ม. |
 | น้ำหนัก | ~32–38 กก. (ประมาณ) |
+| โครงสะโพก | แผ่น Al 6061 หนา 6 ตัดเลเซอร์ (`hardware/cad/out/show_v1_pelvis_แผ่นสะโพก_Al6.dxf`) + ปลั๊กหัวท่อ Al กลึง 5 ชิ้น (STEP: ขา ×2 · แกนบน · แกนสั้น · หัวแกนเกลียว M8 = ล็อกคอ + ห่วงยก) · M6 หัวจม ×12 · ช่องสายจากขา 18×32 ×2 |
 | เปลือก | ขึ้นรูปจากโมเดล 3 มิติที่สร้างจากภาพแนวคิด · ผนัง 2.4 มม. · ปุ่มข้อสีเทาแยกชิ้น (ไหล่ ศอก ข้อมือ สะโพก เข่า) + แถบเอวเทา |
 | ขา | ท่ออะลูมิเนียม ⌀40 ตรงท่อนเดียว/ข้าง (ไม่มีข้อพับ) |
 | แขน/คอ | ข้อฝืด: แผ่นฝืด 1 มม. + น็อต M8 + แหวนจาน 2×3 ตั้งแรงครั้งเดียว → จับดัดท่าได้เลย ไม่ต้องขันลูกบิด · ไหล่ ~15 N·m · ศอก ~4 · ข้อมือ/คอ ~2 |
@@ -35,6 +36,10 @@
 
 ```
 ไมค์ → Speech-to-Text (th-TH) → LLM → Text-to-Speech (เสียงไทย) → ลำโพง
+
+**ฮาร์ดแวร์เสียง (27 พ.ย. · ฉบับร่าง):** ไมค์อาร์เรย์ ReSpeaker XVF3800 (USB · ตัดเสียงสะท้อน AEC) ที่อกล่างกลางหน้าใต้จอ · ลำโพง 2.5" ×2 ยิงขึ้นที่บ่าข้างคอ (หน้าอกเต็มด้วยจอ 8" + ตัวขับล้อ — หาที่ว่างด้วยสคริปต์เช็กชนแล้ว) · แอมป์ class-D 2×15 W ไฟ 12 V · เสียงหุ่นเล่นผ่าน DAC ของบอร์ดไมค์ เพื่อให้ AEC ได้สัญญาณอ้างอิงตรง
+
+**การชาร์จ:** ระยะ 1 ชาร์จมือที่ช่อง GX16 หลังสะโพก (ฟิวส์ + ไดโอดแยกแพ็คซ้าย/ขวา · BMS แต่ละแพ็คตัดเอง) · ระยะ 2 กลับแท่นเอง: ขั้วส้นเท้า + สายผ่านท่อขาและช่องแผ่นสะโพกเดินไว้แล้ว
 ```
 
 - สลับผู้ให้บริการเสียงได้ + แคชเสียงประโยคที่พูดซ้ำ (อัดบท/คำถามที่พบบ่อยไว้ล่วงหน้า)
@@ -43,4 +48,4 @@
 
 ---
 
-**English summary:** Show V1 is a 1.40 m humanoid that copies the concept art (shells generated from a 3D model of the concept, grey joint covers). Legs are straight Ø40 aluminium tubes; arm and neck joints are hand-posable friction joints (pad + M8 + Belleville stack). Each foot has two 4.5" hub wheels (4WD) on a beam locked to the leg by press-fit TPU pins (~±2° compliance) with 18 mm preloaded die-spring travel at the ankle; the two wheel drivers sit in the belly. Power is 8S 21700 Li-ion hidden around each shin tube: 1P per leg to start (~290 Wh), with empty slots to grow to 2P (~580 Wh). A tilting 8" touchscreen sits on the chest, a black PC face with two 1.9" eye screens on the head. Safety: 4 ToF sensors, IMU + wheel odometry for ROS 2/Nav2, Bluetooth joystick override, ≤0.5 m/s near people, accel ≤0.4 and braking ≤0.6 m/s² (tips at ~1.8). Draft — nothing tested yet.
+**English summary:** Show V1 is a 1.40 m humanoid that copies the concept art (shells generated from a 3D model of the concept, black joint covers, matched to filament in stock). Legs are straight Ø40 aluminium tubes; arm and neck joints are hand-posable friction joints (pad + M8 + Belleville stack). Each foot has two 4.5" hub wheels (4WD) on a beam locked to the leg by press-fit TPU pins (~±2° compliance) with 18 mm preloaded die-spring travel at the ankle; the two wheel drivers sit in the belly. Power is 8S 21700 Li-ion hidden around each shin tube: 1P per leg to start (~290 Wh), with empty slots to grow to 2P (~580 Wh). A tilting 8" touchscreen sits on the chest, a black PC face with two 1.9" eye screens on the head. Safety: 4 ToF sensors, IMU + wheel odometry for ROS 2/Nav2, Bluetooth joystick override, ≤0.5 m/s near people, accel ≤0.4 and braking ≤0.6 m/s² (tips at ~1.8). Draft — nothing tested yet.
