@@ -4,7 +4,7 @@
   - ล้อขับ ZLTECH ZLLG45-ASM200 เพลาคู่ ×2/เท้า (ยางลาย ⌀128 · กว้าง 51 · เพลา M14×1.5 แบน 12 · 3.0 กก. · สายออกปลายเพลาฝั่งใน)
   - คานทรงกระดูก ×2 ประกบนอกล้อ บนเพลาข้อเท้า ⌀12 (แบริ่ง 6901 ×2) · 27 พ.ย. รอบ 3: ล็อกด้วยหมุด TPU อัดแน่น (ยืดหยุ่น ~±2°)
     เพราะคานหมุนอิสระ ±10° (รอบ 2) = ตัวหุ่นไม่มีแรงคืนแนวก้ม-เงย → โยกเองจนชนตัวหยุด (เรื่องโยกตอนออกตัว/เบรก 00:12)
-    · ROCKER=petgcf (ค่าเริ่มต้น · 26 พ.ย. 22:40): พิมพ์ PETG-CF หนา 15 นอนราบ + ปลอก Al ⌀28/24 ใส่แบริ่ง
+    · ROCKER=pahtcf (ค่าเริ่มต้น · 27 พ.ย. 00:43) · petgcf (เดิม 26 พ.ย. 22:40): พิมพ์ PETG-CF หนา 15 นอนราบ + ปลอก Al ⌀28/24 ใส่แบริ่ง
       + แผ่นรองเพลาเหล็ก 3 มม. รูปตัว D ในหลุมลึก 8 ที่เพลาล้อ (กันหมุน + กระจายแรงน็อต M14) · ฝาครอบเป็นเนื้อเดียวกับคาน
     · ROCKER=al (ทางสำรองถ้าทดสอบ PETG-CF ไม่ผ่าน): แผ่น Al 6061 หนา 6 ตัดเลเซอร์ (DXF) + ฝาครอบพิมพ์แยก
     · หยุดกระดก = หมุด M5 + ปลอก TPU ⌀9 จากบล็อกข้อเท้า วิ่งในร่องโค้งของแผ่น
@@ -44,10 +44,16 @@ HALF_WB = 100.0
 FOOT_X = -22.0                                  # กลางเท้า x = แกนขาตรง V1 (v1_sdf.LEG_X · 27 พ.ย.: เดิม −30 = ข้อเท้า AI)
 PIVOT_Z = AXLE_Z + 86.0                         # เพลาข้อเท้า z 150 (ภาพ ~130 · สูงขึ้นตามล้อ ⌀128)
 DZ = AXLE_Z - PIVOT_Z                           # −86
-ROCKER = os.environ.get("ROCKER", "ppacf")      # ppacf (กติกาวัสดุ 26 พ.ย. 22:51 · ค่าเริ่มต้น 27 พ.ย.) | petgcf (ตกลงเดิม 22:40) | al (สำรอง)
-PETG = ROCKER in ("petgcf", "ppacf")             # คานพิมพ์ (ชื่อตัวแปรเดิม = "พิมพ์")
+ROCKER = os.environ.get("ROCKER", "pahtcf")     # pahtcf (27 พ.ย. 00:43: สั่งง่าย ถูกกว่า แข็งแรงใกล้กัน · ค่าเริ่มต้น) | ppacf | petgcf | al (สำรอง)
+PETG = ROCKER in ("petgcf", "ppacf", "pahtcf")  # คานพิมพ์ (ชื่อตัวแปรเดิม = "พิมพ์")
 PPA = ROCKER == "ppacf"
-MAT_NM = "PPA-CF" if PPA else "PETG-CF"
+# วัสดุคานพิมพ์ (datasheet Bambu · ทิศ XY): ดัดออกแบบ MPa · หารรับค้างนาน · กดออกแบบ MPa · โมดูลัสดัด MPa (ชื้น/ร้อนแบบอนุรักษ์)
+#   PAHT-CF (PA12+CF): ดัด 125 แห้ง / 115 ชื้น · E 4120–4230 / 3640 ชื้น · HDT 170 °C @1.8 MPa · Tg PA12 ~45 °C → ล้าตัวมากกว่า PPA → ÷4
+#   PPA-CF: ดัด ~208 · HDT 227 °C → ÷3 · PETG-CF: ดัด 83 → ÷4
+MATS = {"pahtcf": ("PAHT-CF", 90.0, 4, 30.0, 3000.0), "ppacf": ("PPA-CF", 150.0, 3, 40.0, 6000.0),
+        "petgcf": ("PETG-CF", 70.0, 4, 25.0, 3000.0), "al": ("Al 6061", 276.0, 1, 0.0, 69000.0)}
+MAT_NM, MAT_SIG, MAT_CREEP, MAT_COMP, MAT_E = MATS[ROCKER]
+BLK_MAT = "PAHT-CF"                              # บล็อกข้อเท้า + ซ็อกเก็ตขา (27 พ.ย.: เลิกใช้ PPA-CF ทั้งตัว)
 PLATE_T, PLATE_GAP = (15.0 if PETG else 6.0), 2.0
 PLATE_IN = BODY_W / 2 + PLATE_GAP               # 46.5 ผิวในแผ่นคาน
 PLATE_OUT = PLATE_IN + PLATE_T                  # 52.5
@@ -362,20 +368,19 @@ def strength_report():
     # แขนคาน · แต่ละปลายรับ F/4 · คาน 100 · Al 6061-T6 (yield 276 · หน้าตัด 30×6 หักรู ⌀15) / PETG-CF (ดัด XY 70 MPa แบบอนุรักษ์ · datasheet 83 · หน้าตัด 30×15 ไม่มีรู)
     if PETG:
         Zarm = PLATE_T * 30 ** 2 / 6
-        sig = 150.0 if PPA else 70.0                 # PPA-CF: datasheet Bambu ดัด XY 208 MPa (แห้ง) → ใช้ 150 แบบอนุรักษ์ · PETG-CF 83 → 70
-        arm = sig * Zarm * 4 / HALF_WB / g
-        arm_creep = arm / (3 if PPA else 4)          # รับค้างนาน: PPA-CF ⅓ (HDT 227 °C · ล้าตัวน้อยกว่า) · PETG-CF ¼
+        arm = MAT_SIG * Zarm * 4 / HALF_WB / g       # ค่าดัดออกแบบจากตาราง MATS
+        arm_creep = arm / MAT_CREEP
     else:
         Zarm = 6 * (30 ** 3 - 15 ** 3) / (6 * 30)
         arm = 276 * Zarm * 4 / HALF_WB / g
     wheel = 2 * 150.0                               # ZLLG45 150 กก./ล้อ (สเปกผู้ผลิต)
-    post = math.pi * (7 ** 2 - 3.5 ** 2) * (40 if PPA else 25) / g      # เสากันยุบพิมพ์ (กด · PPA-CF 40 / PETG-CF 25 MPa แบบอนุรักษ์)
-    tube = math.pi * (20 ** 2 - 18 ** 2) * (40 if PPA else 25) / g      # ปลายท่อ Al กดก้นซ็อกเก็ตพิมพ์
+    post = math.pi * (7 ** 2 - 3.5 ** 2) * MATS["pahtcf"][3] / g        # เสากันยุบพิมพ์ PAHT-CF (กด 30 MPa แบบอนุรักษ์)
+    tube = math.pi * (20 ** 2 - 18 ** 2) * MATS["pahtcf"][3] / g        # ปลายท่อ Al กดก้นซ็อกเก็ต PAHT-CF
     spring_max = 2 * SPRING_K * (HEAVE + PRELOAD) / g
     rows = [("ล้อ ZLLG45 ×2 (สเปก)", wheel), ("แบริ่ง 6901 ×2 (C0r 1.46 kN/ตัว)", brg), ("เพลา ⌀12 เหล็ก (ดัด · ถึงคราก)", shaft),
-            (f"เสากันยุบ {MAT_NM} (กด)", post), ("ก้นซ็อกเก็ตรับปลายท่อ (กด)", tube)]
+            (f"เสากันยุบ {BLK_MAT} (กด)", post), ("ก้นซ็อกเก็ตรับปลายท่อ (กด)", tube)]
     if PETG:
-        rows += [(f"คาน {MAT_NM} 15 ×2 (ดัด · แรงชั่วคราว)", arm), (f"คาน {MAT_NM} 15 ×2 (รับค้างนาน ÷{3 if PPA else 4})", arm_creep)]
+        rows += [(f"คาน {MAT_NM} 15 ×2 (ดัด · แรงชั่วคราว)", arm), (f"คาน {MAT_NM} 15 ×2 (รับค้างนาน ÷{MAT_CREEP})", arm_creep)]
     else:
         rows += [("คาน Al 6 ×2 (ดัด · ถึงคราก)", arm)]
     weakest = min(rows, key=lambda r: r[1])
@@ -384,6 +389,12 @@ def strength_report():
     for nm, v in rows:
         out.append(f"  {nm}: ~{v:.0f} กก.")
     out.append(f"  → จุดอ่อนสุด = {weakest[0]} ~{weakest[1]:.0f} กก./ข้าง = {weakest[1]/design:.1f}× กรณีออกแบบ · {weakest[1]/st:.0f}× ยืนปกติ")
+    if PETG:
+        # ปลายคานแอ่น (คานยื่น 100 · 2 แผ่น · แต่ละปลายรับ ¼ ของแรงยืน) · E ชื้น/อุ่นแบบอนุรักษ์ · รับค้างนาน ×MAT_CREEP
+        I1 = PLATE_T * 30 ** 3 / 12
+        F_end = st * g / 4
+        d0 = F_end * HALF_WB ** 3 / (3 * MAT_E * I1)
+        out.append(f"  ปลายคานแอ่นตอนยืน ~{d0:.2f} มม. (E {MAT_E:.0f}) · รับค้างนาน ~{d0*MAT_CREEP:.1f} มม. · ล้อเอียงตาม ~{math.degrees(1.5*d0*MAT_CREEP/HALF_WB):.1f}° → ยอมได้ ≤ 1 มม. / 1°")
     out.append(f"  สปริง k {SPRING_K} N/มม. ×2 (อัดค้าง {PRELOAD:.0f}): รับยุบได้ถึง ~{spring_max:.0f} กก./ข้าง ({spring_max/st:.1f}× ยืนปกติ) · เกินนี้ชนหัวกันยุบ TPU (ตั้งใจ) · ยุบนิ่ง ~{max(0, st*g/2/SPRING_K-PRELOAD):.0f} มม.")
     # ด้านข้าง: แรงด้าน y ที่พื้น → โมเมนต์ที่ LM (บุชยาว 55 · ช่วงต้าน ~0.7L) และที่โคนแกนในซ็อกเก็ต
     h_lm = PIVOT_Z + BLK_Z1 - LM_L / 2
@@ -504,7 +515,7 @@ def main():
     rep.append("ตัวขับ ZLAC8015D ×2 → อกล่าง (v1_build.py · z 875) · สายมอเตอร์ 600 ต้องต่อยาว ~35–45 ซม. ×4")
     rep.append("ToF (27 พ.ย.): ที่ยึด PAHT-CF ปลายคานนอก หน้า/หลัง (M3 ×2 เข้า heat-set ปลายคาน) · VL53L1X ×1/ปลาย (4 ตัวทั้งหุ่น) มองหน้า-ลง 12° · กันชน/ไมโครสวิตช์ล้อ = ตัดออก (00:30) → ชนแล้วหยุดด้วยซอฟต์แวร์ (ToF + LiDAR + กระแสมอเตอร์ ZLAC พุ่ง)")
     rep.append("ของ: สปริงแม่พิมพ์ ISO 10243 เขียว ⌀20×64 ×4 (+2 สำรอง) · LM10LUU ×4 · น็อต M6×100 ×2 · หมุด M5 ×4 + ปลอก TPU ⌀9 อัดแน่น · M3 ×32 + heat-set M3 ×16 · M14 บาง ×8 · แบริ่ง 6901 ×4 · แกน ⌀10×125 ×4 · เพลา ⌀12×107 (ต๊าป M6 2 ปลาย) ×2 · VL53L1X ×4 · " + (f"ปลอก Al ⌀28/24×15 ×4 · แผ่นรองเพลาเหล็ก 3 ตัว D ×8 (คานพิมพ์ {MAT_NM} เอง)" if PETG else "แผ่น Al 6 ×4"))
-    rep.append((f"พิมพ์: คานนอก/ใน {MAT_NM} (นอนราบ · ผนัง 6 · infill 60%) · ฝาปลายเพลานอก · รางสายใน" if PETG else "พิมพ์: ฝาครอบคาน นอก/ใน (PETG เทา)") + " · บล็อก + ซ็อกเก็ต (PPA-CF) · ดรัม หน้า/หลัง (PETG เทา) · ฝาปุ่ม ×2 + ที่ยึด ToF ×2 (PAHT-CF) · ยางย่น · หัวกันยุบ · ปลอกหมุด (TPU) — ×2 เท้า (ซ้าย = กลับ y)")
+    rep.append((f"พิมพ์: คานนอก/ใน {MAT_NM} (นอนราบ · ผนัง 6 · infill 60%) · ฝาปลายเพลานอก · รางสายใน" if PETG else "พิมพ์: ฝาครอบคาน นอก/ใน (PETG เทา)") + " · บล็อก + ซ็อกเก็ต (PAHT-CF) · ดรัม หน้า/หลัง (PETG เทา) · ฝาปุ่ม ×2 + ที่ยึด ToF ×2 (PAHT-CF) · ยางย่น · หัวกันยุบ · ปลอกหมุด (TPU) — ×2 เท้า (ซ้าย = กลับ y)")
     os.makedirs(OUT, exist_ok=True)
     P = plate_outline()
     path = trimesh.load_path(np.array(P.exterior.coords)[:, :2])
