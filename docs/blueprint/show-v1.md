@@ -8,6 +8,18 @@
 
 *A 1.40 m show humanoid: 3D-printed shell over an aluminium tube frame, straight legs on driven wheel-feet, hand-posed friction-joint arms, eye-display face, Thai voice. Every printed part fits a 256 mm cube bed; metal parts are made with a saw, a drill and printed jigs (no laser cutting or lathe work).*
 
+## 0. หน้าตา / Look
+
+![ทั้งตัว เทียบต้นแบบ](img/show_v1_full_render.jpg)
+
+*ซ้าย 3 ภาพ = โมเดล 3D เปลือกรอบ 6 (หน้า · ข้าง · เฉียง) · ขวา = ภาพต้นแบบ (concept) · ยังไม่ได้ใส่จออกในภาพ 3D · Left: 3D model (front/side/3-4), right: concept render.*
+
+| ต้นแบบ / Concept | ต้นแบบ (มุมเทียบสัดส่วน) |
+|---|---|
+| ![concept](../images/concept_final_render_v1.jpg) | ![concept r3](../images/concept_gemini_r3.jpg) |
+
+ภาพ 3D แต่ละส่วนอยู่ในหัวข้อด้านล่าง: โครง · หัว · แขน · เท้า · จออก · ไฟ · สมอง
+
 ## 1. ภาพรวม / Overview
 
 | | |
