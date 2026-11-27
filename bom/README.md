@@ -5,3 +5,6 @@
 
 เฉพาะชิ้นส่วนและจำนวน · ไม่มีข้อมูลเงินหรือผู้ขาย (หาเองตามพื้นที่ของคุณ) · ช่วยเพิ่มอะไหล่ทดแทนได้ด้วย issue แบบ **ชิ้นส่วน / Part**
 Parts and quantities only — no prices or suppliers. Suggest alternative parts via a *Part* issue.
+
+---
+Licence: CC BY-SA 4.0 (../LICENSES/CC-BY-SA-4.0.txt) · ใช้ซ้ำได้ ต้องให้เครดิต + แชร์ต่อด้วยสัญญาเดียวกัน

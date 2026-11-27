@@ -1,90 +1,97 @@
 <p align="center"><img src="brand/logo/koolab-wordmark.svg" alt="KOOLAB" width="420"></p>
 
-# KOOL Robot — หุ่นยนต์ร่างคนพูดไทย แบบเปิด (open source) 🇹🇭
+# Open-source 3D-printed humanoid show robot (K-Bot based) — KOOLAB V1
 
-> ™ ชื่อ KOOLAB / Kool mini และโลโก้ไม่อยู่ในสัญญาอนุญาตเปิด · Names and logo are trademarks, not open-licensed → [TRADEMARKS.md](TRADEMARKS.md)
+**[ภาษาไทย → README.th.md](README.th.md)** · [Discussions](../../discussions) · [Good first issues](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) · [Devlog](devlog/) · [Blueprint](docs/blueprint/show-v1.md)
 
-> ⚠️ **กำลังพัฒนา / Work in progress** — ยังไม่มีหุ่นตัวจริงที่ประกอบเสร็จ · ตอนนี้มีแบบ CAD การคำนวณ และซอฟต์แวร์ฉบับร่าง · ตัวเลขยังเปลี่ยนได้
-> No assembled robot yet. What exists today: CAD, calculations and draft software. Numbers may still change.
+> ⚠️ **Work in progress — be honest with yourself before building.** No complete robot exists yet. What exists today: full V1 CAD (checked for collisions), print files, slicer weights, calculations and draft software. The first parts started printing on a Bambu Lab X2D on 27 Nov 2026. Numbers can still change.
 
-![concept (AI-generated render, not a photo)](docs/images/concept_gemini_r3.jpg)
-*ภาพแนวคิดจาก AI ไม่ใช่ภาพถ่าย (คนในภาพก็สร้างด้วย AI) · AI-generated concept render, not a photo.*
-*รูปและคลิปหุ่นจริงจะใส่ตรงนี้เมื่อประกอบเสร็จ · Real photos and video will go here once it is built.*
+> ™ "KOOLAB", "Kool mini", "KOOL Robot" and the KOOLAB logo are trademarks and are **not** covered by the open licences → [TRADEMARKS.md](TRADEMARKS.md)
 
-## หุ่นนี้คืออะไร
+![Concept render (AI-generated, not a photo)](docs/images/concept_gemini_r3.jpg)
+*AI-generated concept render — not a photo. The person in the image is also AI-generated.*
 
-หุ่นยนต์ร่างคนสูง **1.40 ม.** สำหรับงานโชว์ อีเวนต์ บูธ และโชว์รูม
+![V1 CAD tour (renders, not photos)](docs/images/v1_cad_tour.gif)
+*V1 CAD renders. Photos and a GIF of real printed parts go here as soon as the first prints come off the printer.*
 
-- **คุยภาษาไทย** ผ่านไมค์และลำโพง (แปลงเสียงบนคลาวด์ + LLM) · ฟังเฉพาะตอนกดปุ่มพูด
-- **ท่อนบนร่างคนบนเท้าล้อ** — เท้าละ 2 ล้อขับ (ขับ 4 ล้อ) + ช่วงล่างสปริง · ขายังไม่เดินในรุ่นแรก
-- **หน้าดำเต็มหน้า + ตาไฟ** ไม่ทำหน้าเหมือนคนจริง · **จอสัมผัส 8" ที่อก ก้ม-เงยได้**
-- **รุ่นแรก (V1) ทำให้สวยตามภาพต้นแบบ** — เปลือกขึ้นรูปจากโมเดล 3 มิติที่สร้างจากภาพแนวคิด · ปุ่มข้อ/แถบเอวสีดำ (ตามเส้นที่มีในคลัง) · ข้อแขนปรับท่าด้วยมือ (ข้อฝืด)
-- **ชิ้นส่วนพิมพ์ 3 มิติเองได้** · แบต Li-ion 21700 ซ่อนในหน้าแข้ง (จุดศูนย์ถ่วงต่ำ · เติมเพิ่มทีหลังได้)
-- รุ่นเดินได้ในอนาคต (V3) จะอิงแบบเปิด **K-Bot** ของ K-Scale Labs (ดู [NOTICE](NOTICE))
+## What is it?
 
-**English:** KOOL Robot is a 1.40 m open-source show humanoid for events and showrooms. It talks in Thai through a push-to-talk microphone, cloud speech and an LLM. V1 is a human-like upper body on wheeled feet (two driven wheels per foot with spring suspension), a full black face with light-up eyes and a tilting 8" chest touchscreen. V1 focuses on matching the concept look; arm joints are hand-posable friction joints. A walking version (V3) will follow the open K-Bot design by K-Scale Labs.
+A **1.40 m humanoid show robot** for events, booths and showrooms, designed to be **3D-printed at home** and built with simple tools.
 
-## ทำอะไรได้ตอนนี้ (บอกตรง ๆ) / What works today
+- **Talks Thai** — push-to-talk mic array → cloud speech-to-text → LLM → Thai text-to-speech. Listens only while the button is held (privacy by default).
+- **Upper body on wheeled feet** — two driven hub wheels per foot (4WD) with spring suspension. V1 does not walk.
+- **Full black visor face with light-up eyes** (two 1.9" displays behind a printed PC visor) and a **tilting 8" chest touchscreen**.
+- **Hand-posable arms** — friction joints you pose by hand (motorised arms come in V2).
+- **Removable 4S1P 72 Wh battery modules** (21700 cells, under 100 Wh each so they can be carried on flights), two per leg.
+- **No laser-cutting or lathe shop needed** — hip plate from standard 3"×1/4" aluminium flat bar drilled with a printed jig, tube end plugs printed in PAHT-CF.
+- **Everything fits a 256 × 256 × 256 mm bed** — ~160 printed parts, ~9.6 kg of filament (PLA, PETG-CF, PAHT-CF, TPU, PC).
+- The walking version (V3) will be rebuilt on the open **K-Bot** design by K-Scale Labs (see [NOTICE](NOTICE)).
 
-| ส่วน | สถานะ |
-|---|---|
-| คำนวณมุมล้ม พื้นที่ใช้งาน สัดส่วน (`sim/`) | ✅ ใช้ได้ |
-| CAD เท้าล้อ V1 รอบ 3: 2 ล้อ/เท้า · คานล็อก TPU · สปริงอัดค้าง · ToF + รายงานการทรงตัว (`hardware/cad/show_v1/foot_v1.py`) | ✅ ฉบับร่าง · ยังไม่ทดสอบจริง |
-| CAD กล่องจออก 8" ก้ม-เงย (ข้อฝืด + ยางกันชน TPU) | ✅ ฉบับร่าง (STL) · ยังไม่ได้พิมพ์ทดสอบ |
-| ภาพร่างหน้าจอ + ไฟล์ตั้งค่างาน (`software/`) | ✅ ฉบับร่าง |
-| เปลือก V1 ตามภาพต้นแบบ + ปุ่มข้อดำ + โครงใน + แผ่นสะโพก/ปลั๊ก Al (DXF/STEP) | 🟡 กำลังออกแบบ |
-| ซอฟต์แวร์เสียงบน Raspberry Pi 5 · เฟิร์มแวร์ล้อ · กลับแท่นชาร์จเอง | 🔜 |
-| หุ่นตัวจริง | 🔜 ยังไม่มี |
+## Status
 
-## แผนต่อไป / Roadmap
-
-| รุ่น | เป้าหมาย | สถานะ |
+| Version | Goal | Status |
 |---|---|---|
-| **V1 หุ่นโชว์** | สวยตามภาพต้นแบบ · พูดไทย · เท้าล้อ 4 ล้อ + สปริง · ข้อแขนปรับท่าด้วยมือ · จอ 8" | 🟡 ออกแบบ |
-| V2 แขนขยับได้ | ใส่มอเตอร์จริงที่แขน | 🔜 |
-| V3 เดินได้ | ทำใหม่ตามแบบ K-Bot | 🔜 |
+| **V1 show robot** | Looks like the concept · talks Thai · 4WD wheeled feet with suspension · hand-posed friction joints · tilting 8" screen | 🟡 CAD done and reviewed · **printing started 27 Nov 2026** · not assembled |
+| **V2** | Motorised arms (RobStride-class actuators) on the V1 body | 🔜 planned |
+| **V3** | Walking robot rebuilt on the K-Bot design | 🔜 planned |
 
-รายละเอียด: [ROADMAP.md](ROADMAP.md) · สเปก: [docs/build/show-v1.md](docs/build/show-v1.md) · บันทึกงานรายสัปดาห์: [devlog/](devlog/)
-
-## โครงโฟลเดอร์ / Repository layout
-
-| โฟลเดอร์ | มีอะไร |
+| Part of V1 | State |
 |---|---|
-| [`hardware/`](hardware/) | สคริปต์ CAD (build123d) · STEP/STL/DXF ที่สร้างแล้ว · [ค่าตั้งพิมพ์ X2D](hardware/print-settings.md) |
-| [`bom/`](bom/) | รายการชิ้นส่วนและจำนวน |
-| [`docs/assembly/`](docs/assembly/) | วิธีประกอบทีละขั้นพร้อมรูป |
-| [`software/`](software/) | ซอฟต์แวร์พูดคุย หน้าจอ ไฟล์ตั้งค่างาน (ไม่มี key — ใช้ `.env` ของคุณเอง) |
-| [`sim/`](sim/) | โมเดลและการคำนวณ (MuJoCo / numpy) |
-| [`devlog/`](devlog/) | บันทึกรายสัปดาห์: ลองอะไร · ผ่าน · พัง · ต่อไป |
-| `third_party/` | ไฟล์ K-Bot ต้นฉบับ (ไม่แก้) ตามสัญญาอนุญาตเดิม |
+| Stability / tip-over / reach calculations (`sim/`) | ✅ works |
+| Wheeled foot V1 (2 wheels per foot, locked rocker, preloaded springs, ToF sensors) | ✅ draft CAD · strength report · not tested |
+| Tilting 8" chest screen box | ✅ draft STL · not printed yet |
+| Full-body blueprint with illustrations | ✅ [docs/blueprint/show-v1.md](docs/blueprint/show-v1.md) |
+| Print order (low → high risk) and X2D settings | ✅ [hardware/print-settings.md](hardware/print-settings.md) |
+| Clearance test + hip-plate drill jig | 🖨️ printing now |
+| Voice software on Raspberry Pi 5 · wheel firmware · auto-docking | 🔜 |
+| Assembled robot | 🔜 not yet |
 
-## เริ่มลอง / Quick start
+Roadmap: [ROADMAP.md](ROADMAP.md) · Spec: [docs/build/show-v1.md](docs/build/show-v1.md) · Weekly devlog: [devlog/](devlog/)
+
+## Order parts kits
+
+**Parts kits: KOOLAB Humanoids** — printed parts and the bought parts for V1 will be available as kits (shop opening soon). Everything needed to build it yourself stays free in this repository.
+
+## Repository layout
+
+| Folder | Contents | Licence |
+|---|---|---|
+| [`hardware/`](hardware/) | CAD source scripts, generated STEP/STL/DXF, slicer scripts and weights, [print settings](hardware/print-settings.md) | CERN-OHL-S-2.0 |
+| [`bom/`](bom/) | Bill of materials (quantities, no shops) | CC BY-SA 4.0 |
+| [`docs/`](docs/) | Blueprint, build spec, assembly steps, images | CC BY-SA 4.0 |
+| [`software/`](software/) | Show profiles, screen mock-ups (no keys — bring your own `.env`) | Apache-2.0 |
+| [`sim/`](sim/) | MuJoCo / numpy calculations | Apache-2.0 |
+| [`devlog/`](devlog/) | Weekly log: tried · worked · broke · next | CC BY-SA 4.0 |
+| [`brand/logo/`](brand/logo/) | KOOLAB logo files | **All rights reserved** — [TRADEMARKS.md](TRADEMARKS.md) |
+| `third_party/` | Unmodified K-Bot files from K-Scale Labs | Their original licences ([NOTICE](NOTICE)) |
+
+## Quick start
 
 ```bash
-pip install mujoco build123d numpy matplotlib pillow
-python3 sim/kbot/show_v1_tip.py                        # มุมล้มของหุ่นโชว์ v1
-pip install trimesh manifold3d shapely ezdxf
-python3 hardware/cad/show_v1/foot_v1.py                # เท้าล้อ V1 → hardware/cad/out/show_v1_foot1_*
+pip install mujoco numpy matplotlib pillow trimesh manifold3d shapely ezdxf
+python3 sim/kbot/show_v1_tip.py              # tip-over angles of the V1 show robot
+python3 hardware/cad/show_v1/foot_v1.py      # wheeled foot V1 → hardware/cad/out/show_v1_foot1_*
 ```
 
-## อยากช่วย? / How to help
+Want to print? Start with `hardware/cad/out/` + [print-settings.md](hardware/print-settings.md) (print the clearance test first).
 
-ไม่ต้องเขียนโค้ดเป็นก็ช่วยได้: พิมพ์ทดสอบ · ตรวจตัวเลข · แนะนำอะไหล่ทดแทน · แปลเอกสาร · เขียนบทพูดภาษาไทย/ภาษาถิ่น
+## How to help
 
-1. ดู issue ที่ติดป้าย [**good first issue**](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) หรือ [**help wanted**](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-2. อ่าน [CONTRIBUTING.md](CONTRIBUTING.md) (ไทย + English)
-3. ถาม คุย เสนอไอเดียได้ที่ [**Discussions**](../../discussions)
-4. ⚠️ อ่าน [SAFETY.md](SAFETY.md) ก่อนสร้างของจริง
+You don't need to write code: **test-print parts**, **check the maths**, **suggest replacement parts** you can buy where you live, **translate** (Thai ↔ English), **write Thai or regional show scripts**.
 
-## สัญญาอนุญาต / Licences
+1. Pick a [**good first issue**](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) or [**help wanted**](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+2. Read [CONTRIBUTING.md](CONTRIBUTING.md) (English + Thai · DCO sign-off)
+3. Ask, share builds and ideas in [**Discussions**](../../discussions)
+4. ⚠️ Read [SAFETY.md](SAFETY.md) before building anything real (36 kg robot, Li-ion batteries, wheels near people)
 
-| ส่วน | สัญญาอนุญาต |
+## Licences
+
+| Part | Licence |
 |---|---|
-| แบบฮาร์ดแวร์ (`hardware/`, STEP/STL/DXF) | [CERN-OHL-S-2.0](LICENSE-HW) |
-| โค้ด (`software/`, `sim/`, สคริปต์) | [Apache-2.0](LICENSE) |
-| เอกสารและภาพ (`docs/`, `devlog/`, `bom/`, `*.md`, ภาพ) | [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt) |
-| `third_party/` | ตามไฟล์สัญญาอนุญาตเดิมในแต่ละโฟลเดอร์ (ดู [NOTICE](NOTICE)) |
-| `brand/logo/` (โลโก้ KOOLAB) | **สงวนสิทธิ์ ไม่ใช่สัญญาเปิด** · All rights reserved ([TRADEMARKS.md](TRADEMARKS.md)) |
+| Hardware design (`hardware/`, including the CAD source scripts and STEP/STL/DXF) | [CERN-OHL-S-2.0](LICENSE-HW) |
+| Software and calculations (`software/`, `sim/`) | [Apache-2.0](LICENSE) |
+| Documentation and images (`docs/`, `devlog/`, `bom/`, `*.md`, images) | [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt) |
+| `third_party/` | Original licence files in each folder ([NOTICE](NOTICE)) |
+| `brand/logo/` | All rights reserved ([TRADEMARKS.md](TRADEMARKS.md)) |
 
-- ชื่อ "KOOLAB" / "Kool mini" / "KOOL Robot" และโลโก้ KOOLAB ไม่รวมอยู่ในสัญญาอนุญาตเปิด ดู [TRADEMARKS.md](TRADEMARKS.md) · Names and logo: see [TRADEMARKS.md](TRADEMARKS.md)
-- ห้ามใช้ชื่อ K-Bot / K-Scale เป็นชื่อสินค้าที่สร้างจากแบบนี้ · Do not use the K-Bot or K-Scale names as product names.
+Do not use "K-Bot" or "K-Scale" as the name of a product built from this design.
