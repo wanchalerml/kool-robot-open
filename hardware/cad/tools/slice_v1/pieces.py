@@ -51,10 +51,10 @@ for f in sorted(os.listdir(OUT)):
     if f.startswith("show_v1_pelvis_") and f.endswith("_PLA.stl"):
         add(f, "PLA (จิ๊ก)", 1, "pla_black", "จิ๊ก")
 # กล่องจออก
-for k in ("กรอบหน้า", "ฝาหลัง", "หูขวา", "หูซ้าย", "แผ่นรองในขวา", "แผ่นรองในซ้าย"):
+for k in ("กรอบหน้า", "ฝาหลัง", "บานพับอก", "แผ่นรองใน"):
     add(f"show_v1_chest_tilt_{k}.stl", "PETG-CF", 1, "petgcf_light", "จอ")
-for k in ("ยางกันชน_ก้ม_TPU", "ยางกันชน_เงย_TPU"):
-    add(f"show_v1_chest_tilt_{k}.stl", "TPU", 1, "tpu", "จอ")
+for k in ("ยางกันชน_ก้ม_TPU",):
+    add(f"show_v1_chest_tilt_{k}.stl", "TPU", 2, "tpu", "จอ")
 for p in P:
     assert os.path.exists(f"{OUT}/{p['file']}"), p["file"]
 json.dump(P, open(os.path.join(W, "pieces.json"), "w"), ensure_ascii=False, indent=0)

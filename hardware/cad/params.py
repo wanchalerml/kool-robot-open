@@ -1,7 +1,8 @@
 """ค่าเผื่อของเครื่อง Bambu Lab X2D — ใช้ร่วมกันทุกชิ้นใน cad/
 
 สถานะ (21 พ.ย. 2569): **FIT_* ปรับจากชิ้นทดสอบรอบ 1 แล้ว** (PLA Basic ดำ · รูแนวตั้ง ⌀5)
-        น็อต/สกรู (NUT_AF_OFFSET, SCREWS clear) + HORIZONTAL_HOLE_EXTRA + FIT_PRESS = ยังเป็นค่าตั้งต้น
+        **27 พ.ย. ช่องน็อต M3/M4 ปรับจากชิ้นทดสอบรอบ 2 แล้ว** (NUT_AF_OFFSET_BY) · รูสกรูผ่าน M3/M4 ผ่านลื่น
+        HORIZONTAL_HOLE_EXTRA + FIT_PRESS = ยังเป็นค่าตั้งต้น
 หลังพิมพ์ cad/tests/clearance_test.py แล้ว ให้แก้ค่าในไฟล์นี้ตามช่องที่ "สวมพอดี"
 แล้วบันทึกวันที่/วัสดุ/ผลไว้ใน CALIBRATION_LOG ด้านล่าง
 
@@ -46,7 +47,8 @@ SCREWS = {
     "M4":  dict(clear=4.5, nut_af=7.0, nut_h=3.2, head_d=7.0, head_h=4.0),
     "M5":  dict(clear=5.5, nut_af=8.0, nut_h=4.7, head_d=8.5, head_h=5.0),
 }
-NUT_AF_OFFSET = 0.25     # เผื่อช่องน็อต (บวกกับ "ข้ามแบน") ให้กดน็อตลงได้แน่นพอดี
+NUT_AF_OFFSET = 0.20     # เผื่อช่องน็อต (บวกกับ "ข้ามแบน") ให้กดน็อตลงด้วยนิ้วแล้วคว่ำไม่หล่น (ทดสอบ 27 พ.ย. · ค่ากลางสำหรับขนาดที่ไม่มีใน NUT_AF_OFFSET_BY)
+NUT_AF_OFFSET_BY = {"M3": 0.20, "M4": 0.10}   # ผลชิ้นทดสอบ 27 พ.ย. (PLA ดำ): ช่องเล็กสุดที่กดลงด้วยนิ้ว + คว่ำไม่หล่น · .3 หล่นทั้งคู่
 NUT_DEPTH_EXTRA = 0.20   # เผื่อความลึกช่องน็อต
 SCREW_TAP_DIA = {"M2": 1.7, "M2.5": 2.1, "M3": 2.6, "M4": 3.5}  # รูต๊าปเกลียวลงพลาสติกตรง
 
@@ -76,7 +78,7 @@ def screw_clear(size: str) -> float:
 
 def nut_af(size: str) -> float:
     """ระยะข้ามแบนของช่องน็อตที่ต้องวาด."""
-    return SCREWS[size]["nut_af"] + NUT_AF_OFFSET
+    return SCREWS[size]["nut_af"] + NUT_AF_OFFSET_BY.get(size, NUT_AF_OFFSET)
 
 
 def nut_depth(size: str) -> float:
@@ -92,4 +94,7 @@ CALIBRATION_LOG = [
      "clearance_test รอบ 1 (33 นาที 12.3 g): หมุด ⌀5 .1 แน่นถอดมือได้ · .2 ลื่นหมุนได้ · .3–.5 หลวมโยก"
      " · น็อต/สกรูยังไม่ได้ลอง (ไม่มีของ) · ไม่มีเวอร์เนียร์",
      "FIT_SNUG 0.15→0.10 · FIT_SLIDE 0.25→0.20 · FIT_LOOSE 0.40→0.30"),
+    ("2569-11-27", "Bambu PLA Basic ดำ · 0.20 Standard X2D · หัว Aux · แผ่น clearance หนา 5 (จาน 1 · หมุดหักไม่ได้ลอง)",
+     "น็อต M3: .2 กดนิ้วลง คว่ำไม่หล่น · .3 หล่น · น็อต M4: .1 กดนิ้วลง คว่ำไม่หล่น · .3 หล่น · สกรู M3/M4 ผ่านรู clear",
+     "NUT_AF_OFFSET 0.25→0.20 · NUT_AF_OFFSET_BY M3 0.20 / M4 0.10 · ชิ้นโชว์ V1 ช่องน็อต M6/M8 (สอดข้าง/น็อตรับแรงดึงสลัก) ไม่ต้องกดค้าง → คงเดิม"),
 ]

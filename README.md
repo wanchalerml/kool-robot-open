@@ -39,7 +39,7 @@ A **1.40 m humanoid show robot** for events, booths and showrooms, designed to b
 |---|---|
 | Stability / tip-over / reach calculations (`sim/`) | ✅ works |
 | Wheeled foot V1 (2 wheels per foot, locked rocker, preloaded springs, ToF sensors) | ✅ draft CAD · strength report · not tested |
-| Tilting 8" chest screen box | ✅ draft STL · not printed yet |
+| 8" chest screen box on a top-edge hinge (tilts 0…+60°) | ✅ draft STL · not printed yet |
 | Full-body blueprint with illustrations | ✅ [docs/blueprint/show-v1.md](docs/blueprint/show-v1.md) |
 | Print order (low → high risk) and X2D settings | ✅ [hardware/print-settings.md](hardware/print-settings.md) |
 | Clearance test | ✅ printed · fit results pending |
