@@ -42,8 +42,8 @@ A **1.40 m humanoid show robot** for events, booths and showrooms, designed to b
 | 8" chest screen box on an X2D-style barrel hinge (tilts −5…+36°) | ✅ draft STL · not printed yet |
 | Full-body blueprint with illustrations | ✅ [docs/blueprint/show-v1.md](docs/blueprint/show-v1.md) |
 | Print order (low → high risk) and X2D settings | ✅ [hardware/print-settings.md](hardware/print-settings.md) |
-| Clearance test | ✅ printed · fit results pending |
-| Hip-plate drill jig | 🖨️ reprinting (1st try failed: jig was upside-down in the slicer — see [devlog](devlog/2026-W48.md)) |
+| Clearance test | ✅ printed · nut-pocket fits tuned |
+| Hip-plate drill jig | ✅ printed (2nd try · 1st failed: jig was upside-down in the slicer — see [devlog](devlog/2026-W48.md)) · not used on metal yet |
 | Voice software on Raspberry Pi 5 · wheel firmware · auto-docking | 🔜 |
 | Assembled robot | 🔜 not yet |
 
