@@ -74,6 +74,9 @@ COL_TOP = 54.0
 BELLOW_SOLID = 8.0
 SPIG_Z0 = COL_TOP + HEAVE + BELLOW_SOLID        # 87 ก้นปากซ็อกเก็ต
 SB = SPIG_Z0 + 8.0                              # 95 ใต้แผ่นซ็อกเก็ต
+SLV_BOT = 48.3                                  # ปลอกล่างรัดคอดรัมเหนือผิวดรัม (z 48 ที่ ±y)
+SLV_RI, SLV_RO, SLV_TOP = COL_RO + 3.3, COL_RO + 5.5, SB - 16.5   # ปลอกล่าง (ตามดรัม): ใน r 37.3 นอก 39.5 · ขอบบน 71.5 → ยุบสุด 16 เหลือใต้แผ่นซ็อกเก็ต 0.5
+SKT_RO, SKT_BOT = COL_RO + 2.7, SLV_TOP - 0.5                     # ปลอกบน (ตามขา): r 34.5–36.7 ห้อยถึง 71 (ซ้อนปลอกล่าง 0.5 · ยุบสุดเหนือบ่าปลอกล่าง 0.5)
 SOCK_T, SOCK_R = 20.0, 40.0
 TUBE_D = 40.0
 TUBE_COL_H = 50.0
@@ -84,8 +87,9 @@ ROD_BOT = -12.0
 COVER_T = 4.0
 LIP = 1.6
 POCKET_R, POCKET_FLAT, POCKET_D = 17.0, 14.0, 8.0   # PETG: หลุมตัว D รอบเพลาล้อ ด้านนอกแผ่น
-WASHER_T = 3.0                                    # แผ่นรองเพลาเหล็ก
-SLEEVE_OD = 28.0                                  # ปลอก Al ใส่แบริ่ง 6901 (OD 24 · ผนัง 2)
+WASHER_T = 3.2                                    # แผ่นรองเพลาเหล็กแบน 1/8"
+SLEEVE_OD = 24.1                                  # 27 พ.ย. v12: อัดแบริ่ง 6901 (OD 24) ตรงเข้ารูคาน PAHT-CF (เดิมปลอก Al กลึง ⌀28) · แรงกดรู ~0.5 MPa
+WASH_W, WASH_H = 30.0, 25.4                       # 27 พ.ย. v12: แผ่นรองเพลา = เหล็กแบน 1"×1/8" (25.4×3.18) ตัดยาว 30 ด้วยเลื่อย (เดิมตัว D ตัดเลเซอร์)
 NUT_Y0 = (PLATE_OUT - POCKET_D + WASHER_T) if PETG else PLATE_OUT   # ผิวรองน็อต M14
 NUT_T = 7.0
 PLATE_NM = f"{MAT_NM} 15" if PETG else "Al 6061 หนา 6"
@@ -159,13 +163,19 @@ def axle_slot(x):
                     (x - SHAFT_FLAT / 2 - 0.1, DZ - 30)]).union(Point(x, DZ).buffer(SHAFT_FLAT / 2 + 0.1, 32))
 
 
+def wash_rect(x, clr):
+    """แผ่นรองเพลา = เหล็กแบน 1"×1/8" ตัดยาว 30 (สี่เหลี่ยม · ตัดด้วยเลื่อยตรง) · ศูนย์ที่เพลาล้อ · clr = เผื่อหลุม"""
+    return Polygon([(x - WASH_W / 2 - clr, DZ - WASH_H / 2 - clr), (x + WASH_W / 2 + clr, DZ - WASH_H / 2 - clr),
+                    (x + WASH_W / 2 + clr, DZ + WASH_H / 2 + clr), (x - WASH_W / 2 - clr, DZ + WASH_H / 2 + clr)])
+
+
 def d_shape(x, r, flat):
     return Point(x, DZ).buffer(r, 64).intersection(Polygon([(x - 50, DZ - 50), (x + 50, DZ - 50), (x + 50, DZ + flat), (x - 50, DZ + flat)]))
 
 
 def plate_outline():
     g = bone()
-    holes = [Point(0, 0).buffer(SLEEVE_OD / 2 if PETG else 12.0, 64)]   # PETG: ปลอก Al ⌀30 · Al: แบริ่ง 6901 (12×24×6) อัดตรง
+    holes = [Point(0, 0).buffer(SLEEVE_OD / 2 if PETG else 12.0, 64)]   # พิมพ์: แบริ่ง 6901 อัดตรง ⌀24.1 · Al: รูเพลา ⌀24
     for s in (-1, 1):                                            # ร่องเพลาแบน 12 (เปิดลง สอดเพลาจากล่าง)
         slot = Polygon([(s * HALF_WB - SHAFT_FLAT / 2 - 0.1, DZ), (s * HALF_WB + SHAFT_FLAT / 2 + 0.1, DZ),
                         (s * HALF_WB + SHAFT_FLAT / 2 + 0.1, DZ - 30), (s * HALF_WB - SHAFT_FLAT / 2 - 0.1, DZ - 30)])
@@ -186,8 +196,8 @@ def build():
         pl = extrude_xz(P, sy * PLATE_IN, sy * PLATE_OUT)
         if PETG:
             yo = sy * PLATE_OUT
-            for s in (-1, 1):                                    # หลุมตัว D (แผ่นรองเหล็ก + น็อต)
-                pl = pl - extrude_xz(d_shape(s * HALF_WB, POCKET_R, POCKET_FLAT), yo - sy * POCKET_D, yo + sy * 0.1)
+            for s in (-1, 1):                                    # หลุมสี่เหลี่ยม (แผ่นรองเหล็กแบน + น็อต)
+                pl = pl - extrude_xz(wash_rect(s * HALF_WB, 0.3), yo - sy * POCKET_D, yo + sy * 0.1)   # หลุมสี่เหลี่ยมรับแผ่นเหล็กแบน
             for (x, z) in LIGHTEN:                               # วงกลมตกแต่งแบบภาพ (บุ๋ม 1)
                 pl = pl - (cyl_y(x, z, 7.0, yo - sy * 1.0, yo + sy * 0.1, 48) - cyl_y(x, z, 5.5, yo - sy * 1.2, yo + sy * 0.2, 48))
         for s_ in (-1, 1):                                       # heat-set M3 ×2/ปลายคาน (รับที่ยึด ToF) · รัศมีเข้าปลายคาน ด้านในความหนา
@@ -196,17 +206,14 @@ def build():
                 pl = pl - cyl_y(s_ * HALF_WB + s_ * 30 * math.cos(ar), DZ + 30 * math.sin(ar), 2.0, sy * (PLATE_IN - 0.5), sy * (PLATE_IN + 7))
         parts[nm] = from_man(pl); cols[nm] = GREY if PETG else AL
     if PETG:
-        sl, wa = None, None
+        wa = None
         for sy in (-1, 1):
-            t = cyl_y(0, 0, SLEEVE_OD / 2, sy * PLATE_IN, sy * PLATE_OUT, 64) - cyl_y(0, 0, 12.0, sy * (PLATE_IN - 1), sy * (PLATE_OUT + 1), 64)
-            sl = t if sl is None else sl + t
             y0 = sy * (PLATE_OUT - POCKET_D)
             for s in (-1, 1):
-                d = d_shape(s * HALF_WB, POCKET_R - 0.3, POCKET_FLAT - 0.3).difference(axle_slot(s * HALF_WB))
+                d = wash_rect(s * HALF_WB, 0.0).difference(axle_slot(s * HALF_WB))
                 w = extrude_xz(d, y0, y0 + sy * WASHER_T)
                 wa = w if wa is None else wa + w
-        parts["ปลอกแบริ่ง_Al"] = from_man(sl); cols["ปลอกแบริ่ง_Al"] = AL
-        parts["แผ่นรองเพลา_D_เหล็ก3"] = from_man(wa); cols["แผ่นรองเพลา_D_เหล็ก3"] = STEEL
+        parts["แผ่นรองเพลา_เหล็กแบน"] = from_man(wa); cols["แผ่นรองเพลา_เหล็กแบน"] = STEEL
     # ล้อ (ตัวแทน · สายออกฝั่งใน +y)
     for s, nm in ((-1, "ล้อหลัง"), (1, "ล้อหน้า")):
         x = s * HALF_WB
@@ -283,11 +290,15 @@ def build():
         sp = cyl((s * ROD_X, 0, (BLK_Z1 + SB) / 2), "z", SPRING_OD / 2, SB - BLK_Z1 - 0.2, 32) - cyl((s * ROD_X, 0, (BLK_Z1 + SB) / 2), "z", SPRING_OD / 2 - 1.6, SB - BLK_Z1 + 2, 32)
         spr = sp if spr is None else spr + sp
     parts["สปริง_ตัวแทน"] = from_man(spr); cols["สปริง_ตัวแทน"] = (0.85, 0.55, 0.15)
-    # ยางย่น TPU (ท่าตรง): รัดคอดรัม z COL_TOP−8…COL_TOP · รัดปากซ็อกเก็ต SPIG_Z0…SB · ย่น 4 ลอน r 34↔44
-    zs = np.linspace(COL_TOP, SPIG_Z0, 9)
-    prof_o = [(COL_RO + 1.0, COL_TOP - 8)] + [(COL_RO + 1.0 + (9 if i % 2 else 0), z) for i, z in enumerate(zs)] + [(COL_RO + 1.0, SB)]
-    prof_i = [(r - 1.0, z) for r, z in prof_o[::-1]]
-    parts["ยางย่น_TPU"] = from_man(revolve(prof_o + prof_i)); cols["ยางย่น_TPU"] = TPU
+    # 27 พ.ย. v12 ตรวจทาน: เดิมยางย่น 8 ผนังเอียง ~15° → ผนังจริงหนาแค่ 0.3 + ยื่นลอยพิมพ์ไม่ได้
+    # → ปลอกกันฝุ่นสวมเลื่อน 2 ชั้น (TPU ขาว · ไม่มีส่วนพับ · พิมพ์ตรงไม่ต้องซัพพอร์ต):
+    #   ล่าง (ขยับตามดรัม) = รัดคอดรัม z SLV_BOT…COL_TOP แล้วตั้งขึ้นเป็นปลอกนอก r 37.3–39.5 ถึง SLV_TOP
+    #   บน (ติดขา) = รัดปากซ็อกเก็ต SPIG_Z0…SB แล้วห้อยลงเป็นปลอกใน r 34.5–36.7 ถึง SKT_BOT · ยุบแล้วปลอกบนเลื่อนลงในปลอกล่าง (ช่อง 0.6)
+    parts["ปลอกกันฝุ่นล่าง_TPU"] = from_man(revolve([(COL_RO, SLV_BOT), (SLV_RO, SLV_BOT), (SLV_RO, SLV_TOP),
+                                                    (SLV_RI, SLV_TOP), (SLV_RI, COL_TOP + 0.5), (COL_RO, COL_TOP + 0.5)]))
+    parts["ปลอกกันฝุ่นบน_TPU"] = from_man(revolve([(COL_RO, SB - 0.2), (SKT_RO, SB - 0.2), (SKT_RO, SKT_BOT),
+                                                   (COL_RO + 0.5, SKT_BOT), (COL_RO + 0.5, SPIG_Z0), (COL_RO, SPIG_Z0)]))
+    cols["ปลอกกันฝุ่นล่าง_TPU"] = cols["ปลอกกันฝุ่นบน_TPU"] = TPU
     # ฝาครอบคานทรงกระดูก · Al: ฝาครอบพิมพ์แยก (หน้านอก + ขอบห่อ) · PETG: คานเป็นทรงกระดูกในตัว → เหลือแค่ฝาปลายเพลา (นอก) + รางสาย (ใน)
     B = bone()
     for side, sy in (("นอก", -1), ("ใน", 1)):
@@ -328,7 +339,7 @@ def build():
         parts[nm] = from_man(cov); cols[nm] = GREY
     # ---- ที่ยึด ToF หน้า/หลัง (27 พ.ย. #robot-spec-อัปเดต · 00:30 "เอากันล้อออก" → ไม่มีกันชน/ไมโครสวิตช์ เหลือ ToF) ----
     # แผ่นหู PETG-CF (ทางผสม 27 พ.ย. 06:46) แนบปลายคานนอก (ในแนวความหนาคาน |y| 46.5–61.5 = นอกล้อ) ยื่นออกถึง r ~70 · M3 ×2 เข้า heat-set ปลายคาน · ToF VL53L1X มองหน้า-ลง 12°
-    TOF = (13.5, 18.5, 4.5)                                      # VL53L1X บอร์ดเล็ก (Pololu 13×18) MEASURE
+    TOF = (13.5, 18.5, 4.5)                                      # VL53L1X Pololu #3415: 13×18×2 มม. (ผู้ผลิต · รู M2 ห่าง 12.7) → ช่อง 13.5×18.5 เผื่อ · ยึดกาวร้อน/M2
     for s_, nm in ((1, "หน้า"), (-1, "หลัง")):
         x0 = s_ * HALF_WB
         sy = -1                                                  # ฝั่งนอก
@@ -446,10 +457,10 @@ def place(m, rock=0.0, heave=0.0):
     return m
 
 
-ROCKING = ("คานนอก", "คานใน", "ล้อหลัง", "ล้อหน้า", "ฝาครอบคานนอก", "ฝาครอบคานใน", "ฝาปลายเพลานอก", "รางสายใน", "ปลอกแบริ่ง_Al", "แผ่นรองเพลา_D_เหล็ก3",
+ROCKING = ("คานนอก", "คานใน", "ล้อหลัง", "ล้อหน้า", "ฝาครอบคานนอก", "ฝาครอบคานใน", "ฝาปลายเพลานอก", "รางสายใน", "แผ่นรองเพลา_เหล็กแบน",
            "ที่ยึด_ToF_หน้า", "ที่ยึด_ToF_หลัง")
-HEAVING = ROCKING + ("บล็อกข้อเท้า", "หมุดหยุด_M5_ปลอกTPU", "ดรัมข้อเท้า_หน้า", "ดรัมข้อเท้า_หลัง", "ฝาปุ่มข้อเท้า", "เพลาข้อเท้า_⌀12")
-SKIP_CHECK = ("สปริง_ตัวแทน", "ยางย่น_TPU")                       # ยืด/ยุบได้ · ไม่เช็กชน
+HEAVING = ROCKING + ("ปลอกกันฝุ่นล่าง_TPU", "บล็อกข้อเท้า", "หมุดหยุด_M5_ปลอกTPU", "ดรัมข้อเท้า_หน้า", "ดรัมข้อเท้า_หลัง", "ฝาปุ่มข้อเท้า", "เพลาข้อเท้า_⌀12")
+SKIP_CHECK = ("สปริง_ตัวแทน",)                       # ยืด/ยุบได้ · ไม่เช็กชน
 
 
 def posed(parts, rk, hv):
@@ -474,8 +485,8 @@ def main():
                                        ("ล้อหน้า", "ฝาครอบคานใน"), ("ล้อหลัง", "ฝาครอบคานใน"), ("ดรัมข้อเท้า_หน้า", "ดรัมข้อเท้า_หลัง"),
                                        ("ดรัมข้อเท้า_หน้า", "บล็อกข้อเท้า"), ("ดรัมข้อเท้า_หลัง", "บล็อกข้อเท้า"), ("หมุดหยุด_M5_ปลอกTPU", "ดรัมข้อเท้า_หน้า"),
                                        ("หมุดหยุด_M5_ปลอกTPU", "ดรัมข้อเท้า_หลัง"), ("เพลาข้อเท้า_⌀12", "ดรัมข้อเท้า_หน้า"), ("เพลาข้อเท้า_⌀12", "ดรัมข้อเท้า_หลัง"),
-                                       ("ปลอกแบริ่ง_Al", "คานนอก"), ("ปลอกแบริ่ง_Al", "คานใน"), ("แผ่นรองเพลา_D_เหล็ก3", "ล้อหน้า"), ("แผ่นรองเพลา_D_เหล็ก3", "ล้อหลัง"),
-                                       ("แผ่นรองเพลา_D_เหล็ก3", "คานนอก"), ("แผ่นรองเพลา_D_เหล็ก3", "คานใน"), ("ฝาปลายเพลานอก", "คานนอก"), ("รางสายใน", "คานใน"),
+                                       ("แผ่นรองเพลา_เหล็กแบน", "ล้อหน้า"), ("แผ่นรองเพลา_เหล็กแบน", "ล้อหลัง"),
+                                       ("แผ่นรองเพลา_เหล็กแบน", "คานนอก"), ("แผ่นรองเพลา_เหล็กแบน", "คานใน"), ("ฝาปลายเพลานอก", "คานนอก"), ("รางสายใน", "คานใน"),
                                        ("ที่ยึด_ToF_หน้า", "คานนอก"), ("ที่ยึด_ToF_หลัง", "คานนอก"),
                                        ("หมุดหยุด_M5_ปลอกTPU", "คานนอก"), ("หมุดหยุด_M5_ปลอกTPU", "คานใน")]}   # ปลอก TPU อัดแน่นในรูคาน (ตั้งใจ)
     worst, cases = [], 0
@@ -499,13 +510,13 @@ def main():
     # ช่องว่างสำคัญ
     clr = math.hypot(HALF_WB, DZ) - WD / 2 - DRUM_R
     rep.append(f"  ระยะล้อ ↔ ดรัม {clr:.1f} (คงที่ทุกท่ากระดก เพราะหมุนรอบจุดเดียวกัน)")
-    rep.append(f"  ยางย่น: ยาวช่วงลอน {SPIG_Z0-COL_TOP:.0f} → ยุบสุด {SPIG_Z0-COL_TOP-HEAVE:.0f} (พับลอน 4×2×1) · หัวกันยุบแตะที่ยุบ {STOP_Z-BLK_Z1:.0f}")
+    rep.append(f"  ปลอกกันฝุ่นสวมเลื่อน 2 ชั้น (แทนยางย่น 27 พ.ย.): ล่าง r {SLV_RI:.1f}–{SLV_RO:.1f} z {SLV_BOT:.1f}–{SLV_TOP:.1f} · บน r {COL_RO+0.5:.1f}–{SKT_RO:.1f} z {SKT_BOT:.1f}–{SB:.0f} · ซ้อนกัน {SLV_TOP-SKT_BOT:.1f} มม. ท่าตรง · ยุบสุด 16 เหลือช่อง 0.5 · หัวกันยุบแตะที่ยุบ {STOP_Z-BLK_Z1:.0f}")
     L_inst = SB - BLK_Z1
     rep.append(f"  สปริงแม่พิมพ์ ISO 10243 เขียว ⌀{SPRING_OD:.0f}×{L_inst+PRELOAD:.0f} ×2/เท้า (สวมแกน ⌀10): ติดตั้ง {L_inst:.0f} (อัดค้าง {PRELOAD:.0f}) → ยุบสุด {L_inst-HEAVE:.0f} · k ≈ {SPRING_K} N/มม./ตัว · ยุบรวม {PRELOAD+HEAVE:.0f} ≤ 40% ของยาว ({0.4*(L_inst+PRELOAD):.1f}) ✅")
     rep += strength_report()
     # น้ำหนัก
     rho = {"Al": 2.70e-3, "pr": 1.27e-3 * 0.55, "prd": 1.27e-3 * 0.85, "tpu": 1.2e-3 * 0.8, "st": 7.85e-3}
-    kind = {"คานนอก": "prd" if PETG else "Al", "คานใน": "prd" if PETG else "Al", "ปลอกแบริ่ง_Al": "Al", "แผ่นรองเพลา_D_เหล็ก3": "st", "แกนนำ_⌀10": "st", "เพลาข้อเท้า_⌀12": "st", "ยางย่น_TPU": "tpu", "หัวกันยุบ_TPU": "tpu"}
+    kind = {"คานนอก": "prd" if PETG else "Al", "คานใน": "prd" if PETG else "Al", "แผ่นรองเพลา_เหล็กแบน": "st", "แกนนำ_⌀10": "st", "เพลาข้อเท้า_⌀12": "st", "ปลอกกันฝุ่นล่าง_TPU": "tpu", "ปลอกกันฝุ่นบน_TPU": "tpu", "หัวกันยุบ_TPU": "tpu"}
     g = 0.0
     for k, v in parts.items():
         if k.startswith("ล้อ") or k == "สปริง_ตัวแทน":
@@ -514,19 +525,19 @@ def main():
     rep.append(f"น้ำหนักต่อเท้า ~{6.0 + g/1000 + 0.12:.1f} กก. (มอเตอร์ 6.0 + โครง/พิมพ์/เหล็ก {g/1000:.2f} + แบริ่ง/LM/สปริง ~0.12) · 2 เท้า ~{2*(6.0+g/1000+0.12):.1f} กก.")
     rep.append("ตัวขับ ZLAC8015D ×2 → อกล่าง (v1_build.py · z 875) · สายมอเตอร์ 600 ต้องต่อยาว ~35–45 ซม. ×4")
     rep.append("ToF (27 พ.ย.): ที่ยึด PETG-CF ปลายคานนอก หน้า/หลัง (M3 ×2 เข้า heat-set ปลายคาน) · VL53L1X ×1/ปลาย (4 ตัวทั้งหุ่น) มองหน้า-ลง 12° · กันชน/ไมโครสวิตช์ล้อ = ตัดออก (00:30) → ชนแล้วหยุดด้วยซอฟต์แวร์ (ToF + LiDAR + กระแสมอเตอร์ ZLAC พุ่ง)")
-    rep.append("ของ: สปริงแม่พิมพ์ ISO 10243 เขียว ⌀20×64 ×4 (+2 สำรอง) · LM10LUU ×4 · น็อต M6×100 ×2 · หมุด M5 ×4 + ปลอก TPU ⌀9 อัดแน่น · M3 ×32 + heat-set M3 ×16 · M14 บาง ×8 · แบริ่ง 6901 ×4 · แกน ⌀10×125 ×4 · เพลา ⌀12×107 (ต๊าป M6 2 ปลาย) ×2 · VL53L1X ×4 · " + (f"ปลอก Al ⌀28/24×15 ×4 · แผ่นรองเพลาเหล็ก 3 ตัว D ×8 (คานพิมพ์ {MAT_NM} เอง)" if PETG else "แผ่น Al 6 ×4"))
-    rep.append((f"พิมพ์: คานนอก/ใน {MAT_NM} (นอนราบ · ผนัง 6 · infill 60%) · ฝาปลายเพลานอก · รางสายใน" if PETG else "พิมพ์: ฝาครอบคาน นอก/ใน (PETG เทา)") + " · บล็อก + ซ็อกเก็ต (PAHT-CF) · ดรัม หน้า/หลัง (PLA ดำ · สีตามคลัง 27 พ.ย.) · ฝาปุ่ม ×2 + ที่ยึด ToF ×2 + ฝาปลายเพลา (PETG-CF · ทางผสม 27 พ.ย. 06:46) · ยางย่น · หัวกันยุบ · ปลอกหมุด (TPU) — ×2 เท้า (ซ้าย = กลับ y)")
+    rep.append("ของ: สปริงแม่พิมพ์ ISO 10243 เขียว ⌀20×64 ×4 (+2 สำรอง) · LM10LUU ×4 · น็อต M6×100 ×2 · หมุด M5 ×4 + ปลอก TPU ⌀9 อัดแน่น · M3 ×32 + heat-set M3 ×16 · M14 บาง ×8 · แบริ่ง 6901 ×4 · แกน ⌀10×125 ×4 · เพลา ⌀12×107 (ต๊าป M6 2 ปลาย) ×2 · VL53L1X ×4 · " + (f"แผ่นรองเพลา = เหล็กแบน 1\"×1/8\" ตัดยาว 30 ×8 + เจาะ ⌀12.2 แล้วเลื่อยเปิดร่องลง (คานพิมพ์ {MAT_NM} เอง · แบริ่งอัดตรงในคาน ไม่มีปลอก Al · 27 พ.ย. v12 ทำเองได้ ไม่ต้องตัดเลเซอร์/กลึง)" if PETG else "แผ่น Al 6 ×4"))
+    rep.append((f"พิมพ์: คานนอก/ใน {MAT_NM} (นอนราบ · ผนัง 6 · infill 60%) · ฝาปลายเพลานอก · รางสายใน" if PETG else "พิมพ์: ฝาครอบคาน นอก/ใน (PETG เทา)") + " · บล็อก + ซ็อกเก็ต (PAHT-CF) · ดรัม หน้า/หลัง (PLA ดำ · สีตามคลัง 27 พ.ย.) · ฝาปุ่ม ×2 + ที่ยึด ToF ×2 + ฝาปลายเพลา (PETG-CF · ทางผสม 27 พ.ย. 06:46) · ปลอกกันฝุ่น 2 ชั้น · หัวกันยุบ · ปลอกหมุด (TPU) — ×2 เท้า (ซ้าย = กลับ y)")
     os.makedirs(OUT, exist_ok=True)
     P = plate_outline()
     path = trimesh.load_path(np.array(P.exterior.coords)[:, :2])
     for h in P.interiors:
         path = trimesh.path.util.concatenate([path, trimesh.load_path(np.array(h.coords)[:, :2])])
     path.export(os.path.join(OUT, "show_v1_foot1_คาน_Al6.dxf" if not PETG else "show_v1_foot1_คาน_โครง2D.dxf"))
-    rep.append(f"แผ่นคาน {PLATE_NM}: กล่อง {P.bounds[2]-P.bounds[0]:.0f}×{P.bounds[3]-P.bounds[1]:.0f} · ~{(P.area*PLATE_T*1.27e-6*0.85 if PETG else P.area*6*2.7e-6):.2f} กก./แผ่น · 4 แผ่น (2 เท้า) · " + ("รูปลอก Al ⌀28 · หลุมตัว D ลึก 8 ที่เพลาล้อ · heat-set M3 ×2/ปลาย (ที่ยึด ToF)" if PETG else "รูแบริ่ง ⌀24 อัดแน่น · ต๊าป M3 ×4") + " · รูหมุดล็อก ⌀8.8 (ปลอก TPU ⌀9 อัดแน่น)")
+    rep.append(f"แผ่นคาน {PLATE_NM}: กล่อง {P.bounds[2]-P.bounds[0]:.0f}×{P.bounds[3]-P.bounds[1]:.0f} · ~{(P.area*PLATE_T*1.27e-6*0.85 if PETG else P.area*6*2.7e-6):.2f} กก./แผ่น · 4 แผ่น (2 เท้า) · " + (f"รูแบริ่ง ⌀{SLEEVE_OD} อัดตรง · หลุมสี่เหลี่ยม {WASH_W+0.6:.1f}×{WASH_H+0.6:.1f} ลึก 8 ที่เพลาล้อ · heat-set M3 ×2/ปลาย (ที่ยึด ToF)" if PETG else "รูแบริ่ง ⌀24 อัดแน่น · ต๊าป M3 ×4") + " · รูหมุดล็อก ⌀8.8 (ปลอก TPU ⌀9 อัดแน่น)")
     pz = posed(parts, 0, 0)
     allv = np.vstack([m.vertices for m in pz.values()])
     rep.append(f"กรอบเท้า (ท่าตรง · พิกัดหุ่น): x {allv[:,0].min():.0f}…{allv[:,0].max():.0f} · y {allv[:,1].min():.0f}…{allv[:,1].max():.0f} · z {allv[:,2].min():.0f}…{allv[:,2].max():.0f} · ก้นท่อขา z {PIVOT_Z+SB+SOCK_T+TUBE_COL_H-TUBE_DEPTH:.0f}")
-    rep.append(f"ต่างจากภาพ: ล้อ ⌀128 (ภาพ ~100) · ยางย่นสูง {SB-COL_TOP+8:.0f} ระหว่างปุ่มกับขา (ภาพไม่มี) · รางสายฝั่งใน (กว้างออก ~{CABLE_BEND_R+CABLE_D+COVER_T:.0f})")
+    rep.append(f"ต่างจากภาพ: ล้อ ⌀128 (ภาพ ~100) · ปลอกกันฝุ่นสูง {SB-COL_TOP+8:.0f} ระหว่างปุ่มกับขา (ภาพไม่มี) · รางสายฝั่งใน (กว้างออก ~{CABLE_BEND_R+CABLE_D+COVER_T:.0f})")
     # ส่งออก
     for f in os.listdir(OUT):
         if f.startswith("show_v1_foot1_") and f.endswith(".stl"):
@@ -575,7 +586,7 @@ def render(parts, cols):
         if vw != "iso":
             ax.axhline(0, c="k", lw=0.6)
         ax.set_aspect("equal"); ax.autoscale(); ax.set_title(tt, fontsize=13); ax.axis("off")
-    fig.suptitle("เท้า V1 รอบ 2: ปุ่มข้อเท้าเทา (ดรัม D96 + ฝาปุ่ม) · คานทรงกระดูก " + PLATE_NM + " · ยางย่น TPU ปิดสปริงยุบ 25 มม. · ล้อ ZLLG45 4.5\"", fontsize=14)
+    fig.suptitle("เท้า V1 รอบ 2: ปุ่มข้อเท้าเทา (ดรัม D96 + ฝาปุ่ม) · คานทรงกระดูก " + PLATE_NM + " · ปลอกกันฝุ่น TPU ปิดสปริง · ล้อ ZLLG45 4.5\"", fontsize=14)
     fig.savefig(os.path.join(OUT, "show_v1_foot1_preview.png"), dpi=80, bbox_inches="tight")
 
 

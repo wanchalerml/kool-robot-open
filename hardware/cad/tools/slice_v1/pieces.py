@@ -22,7 +22,7 @@ for f, i in man.items():
         light = k.startswith(("ถาด_", "ถ้วย", "กรอบไมค์", "กรงแบต"))
         add(f, "PETG-CF", n, "petgcf_light" if light else "petgcf_struct", "โครง")
     elif m == "PAHT-CF":
-        add(f, "PAHT-CF", n, "pahtcf_struct", "โครง")
+        add(f, "PAHT-CF", n, "pahtcf_beam" if k.startswith("ปลั๊ก") else "pahtcf_struct", "โครง")
     elif m.startswith("TPU"):
         add(f, "TPU", n, "tpu", "ยาง")
     else:
@@ -42,10 +42,14 @@ FOOT = {"คานนอก": ("PAHT-CF", "pahtcf_beam"), "คานใน": ("P
         "ฝาปุ่มข้อเท้า": ("PETG-CF", "petgcf_light"), "ฝาปลายเพลานอก": ("PETG-CF", "petgcf_light"),
         "รางสายใน": ("PETG-CF", "petgcf_light"), "ที่ยึด_ToF_หน้า": ("PETG-CF", "petgcf_light"),
         "ที่ยึด_ToF_หลัง": ("PETG-CF", "petgcf_light"),
-        "ยางย่น_TPU": ("TPU", "tpu"), "หัวกันยุบ_TPU": ("TPU", "tpu"), "หมุดหยุด_M5_ปลอกTPU": ("TPU", "tpu")}
+        "ปลอกกันฝุ่นล่าง_TPU": ("TPU", "tpu"), "ปลอกกันฝุ่นบน_TPU": ("TPU", "tpu"), "หัวกันยุบ_TPU": ("TPU", "tpu"), "หมุดหยุด_M5_ปลอกTPU": ("TPU", "tpu")}
 for k, (mat, prof) in FOOT.items():
     add(f"show_v1_foot1_{k}.stl", mat, 2, prof, "เท้า")
 add("show_v1_foot1_TEST_คานทดสอบแขวน_PAHT-CF.stl", "PAHT-CF", 1, "pahtcf_beam", "ทดสอบ")
+# จิ๊กเจาะ (เครื่องมือ · PLA สีไหนก็ได้ · 27 พ.ย. v12 ทำเองไม่พึ่งร้านตัดเลเซอร์/กลึง)
+for f in sorted(os.listdir(OUT)):
+    if f.startswith("show_v1_pelvis_") and f.endswith("_PLA.stl"):
+        add(f, "PLA (จิ๊ก)", 1, "pla_black", "จิ๊ก")
 # กล่องจออก
 for k in ("กรอบหน้า", "ฝาหลัง", "หูขวา", "หูซ้าย", "แผ่นรองในขวา", "แผ่นรองในซ้าย"):
     add(f"show_v1_chest_tilt_{k}.stl", "PETG-CF", 1, "petgcf_light", "จอ")

@@ -25,7 +25,7 @@ import os
 from build123d import *
 
 PANELS = {
-    "ws8c":   dict(W=194.00, H=120.00, AW=172.22, AH=107.64, T=12.0),   # MEASURE outline/thickness
+    "ws8c":   dict(W=194.00, H=119.00, AW=172.82, AH=108.24, T=8.5),    # แบบผู้ผลิต 27 พ.ย. (บอร์ดขับหลังจอลึก 15.9 · ดู chest_screen_tilt.py)
     "pi7":    dict(W=189.32, H=120.24, AW=154.56, AH=86.94, T=14.0),
     "pi10":   dict(W=247.30, H=161.80, AW=216.60, AH=135.40, T=14.0),
     "ws10ep": dict(W=239.00, H=147.00, AW=217.18, AH=135.59, T=10.0),
