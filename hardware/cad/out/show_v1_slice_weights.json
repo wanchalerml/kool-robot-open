@@ -1,0 +1,776 @@
+[
+{
+"file": "show_v1_shell6_อกบน_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 167.2,
+"g_total": 334,
+"h_total": 34.6
+},
+{
+"file": "show_v1_shell6_อกบน_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 193.5,
+"g_total": 387,
+"h_total": 39.7
+},
+{
+"file": "show_v1_shell6_อกล่าง_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 1,
+"group": "เปลือก",
+"g_each": 169.8,
+"g_total": 170,
+"h_total": 15.9
+},
+{
+"file": "show_v1_shell6_อกล่าง_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 1,
+"group": "เปลือก",
+"g_each": 145.9,
+"g_total": 146,
+"h_total": 12.6
+},
+{
+"file": "show_v1_shell6_เอว_หน้า.stl",
+"mat": "PLA ดำ",
+"n": 1,
+"group": "เปลือก",
+"g_each": 47.2,
+"g_total": 47,
+"h_total": 4.8
+},
+{
+"file": "show_v1_shell6_เอว_หลัง.stl",
+"mat": "PLA ดำ",
+"n": 1,
+"group": "เปลือก",
+"g_each": 65.0,
+"g_total": 65,
+"h_total": 6.2
+},
+{
+"file": "show_v1_shell6_สะโพก_หน้า.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เปลือก",
+"g_each": 74.0,
+"g_total": 148,
+"h_total": 16.0
+},
+{
+"file": "show_v1_shell6_สะโพก_หลัง.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เปลือก",
+"g_each": 74.3,
+"g_total": 149,
+"h_total": 16.2
+},
+{
+"file": "show_v1_shell6_ต้นแขนขวา_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 69.9,
+"g_total": 140,
+"h_total": 12.7
+},
+{
+"file": "show_v1_shell6_ต้นแขนขวา_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 60.1,
+"g_total": 120,
+"h_total": 10.7
+},
+{
+"file": "show_v1_shell6_แขนล่างขวา_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 51.2,
+"g_total": 102,
+"h_total": 9.3
+},
+{
+"file": "show_v1_shell6_แขนล่างขวา_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 52.3,
+"g_total": 105,
+"h_total": 8.8
+},
+{
+"file": "show_v1_shell6_ต้นขาขวา_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 131.6,
+"g_total": 263,
+"h_total": 21.2
+},
+{
+"file": "show_v1_shell6_ต้นขาขวา_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 122.0,
+"g_total": 244,
+"h_total": 20.3
+},
+{
+"file": "show_v1_shell6_หน้าแข้งขวา_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 110.6,
+"g_total": 221,
+"h_total": 17.7
+},
+{
+"file": "show_v1_shell6_หน้าแข้งขวา_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 2,
+"group": "เปลือก",
+"g_each": 112.8,
+"g_total": 226,
+"h_total": 17.9
+},
+{
+"file": "show_v1_shell6_มือขวา.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เปลือก",
+"g_each": 104.1,
+"g_total": 208,
+"h_total": 20.0
+},
+{
+"file": "show_v1_shell6_ปุ่มสะโพก.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เปลือก",
+"g_each": 42.0,
+"g_total": 84,
+"h_total": 7.6
+},
+{
+"file": "show_v1_shell6_ปุ่มเข่า.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เปลือก",
+"g_each": 88.0,
+"g_total": 176,
+"h_total": 16.0
+},
+{
+"file": "show_v1_shell6_ปลอกแกน_z728.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 38.1,
+"g_total": 38,
+"h_total": 3.2
+},
+{
+"file": "show_v1_shell6_ปลอกแกน_z786.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 90.7,
+"g_total": 91,
+"h_total": 8.4
+},
+{
+"file": "show_v1_shell6_ปลอกแกน_z818.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 59.7,
+"g_total": 60,
+"h_total": 4.9
+},
+{
+"file": "show_v1_shell6_ปลอกแกน_z982.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 99.2,
+"g_total": 99,
+"h_total": 8.1
+},
+{
+"file": "show_v1_shell6_ปลอกแกน_z1000.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 60.1,
+"g_total": 60,
+"h_total": 4.7
+},
+{
+"file": "show_v1_shell6_ปลอกแกน_z1140.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 40.9,
+"g_total": 41,
+"h_total": 3.4
+},
+{
+"file": "show_v1_shell6_คานไหล่ขวา.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 117.5,
+"g_total": 235,
+"h_total": 19.5
+},
+{
+"file": "show_v1_shell6_ไหล่_ซีกนอก.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 151.0,
+"g_total": 302,
+"h_total": 26.0
+},
+{
+"file": "show_v1_shell6_ไหล่_ซีกใน.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 46.9,
+"g_total": 94,
+"h_total": 8.8
+},
+{
+"file": "show_v1_shell6_ไหล่_ฝา.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 2.6,
+"g_total": 5,
+"h_total": 0.6
+},
+{
+"file": "show_v1_shell6_ศอก_ซีกใน.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 119.1,
+"g_total": 238,
+"h_total": 21.1
+},
+{
+"file": "show_v1_shell6_ศอก_ซีกนอก.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 115.9,
+"g_total": 232,
+"h_total": 20.2
+},
+{
+"file": "show_v1_shell6_ศอก_ฝา.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 3.5,
+"g_total": 7,
+"h_total": 0.8
+},
+{
+"file": "show_v1_shell6_ข้อมือ_ซีกบน.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 37.8,
+"g_total": 76,
+"h_total": 6.4
+},
+{
+"file": "show_v1_shell6_ข้อมือ_ซีกล่าง.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "ปุ่มข้อแขน",
+"g_each": 24.8,
+"g_total": 50,
+"h_total": 4.8
+},
+{
+"file": "show_v1_shell6_ปลอกต้นแขน_1.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 14.1,
+"g_total": 28,
+"h_total": 2.5
+},
+{
+"file": "show_v1_shell6_ปลอกต้นแขน_2.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 13.2,
+"g_total": 26,
+"h_total": 2.3
+},
+{
+"file": "show_v1_shell6_ปลอกแขนล่าง_1.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 12.7,
+"g_total": 25,
+"h_total": 2.2
+},
+{
+"file": "show_v1_shell6_ปลอกแขนล่าง_2.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 12.4,
+"g_total": 25,
+"h_total": 2.1
+},
+{
+"file": "show_v1_shell6_ปลอกต้นขา_1.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 21.8,
+"g_total": 44,
+"h_total": 3.2
+},
+{
+"file": "show_v1_shell6_ปลอกต้นขา_2.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 20.2,
+"g_total": 40,
+"h_total": 3.1
+},
+{
+"file": "show_v1_shell6_กรงแบตขวา.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 141.5,
+"g_total": 283,
+"h_total": 28.8
+},
+{
+"file": "show_v1_shell6_ปลอกปุ่มเข่า.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 19.6,
+"g_total": 39,
+"h_total": 3.0
+},
+{
+"file": "show_v1_shell6_ปลอกปุ่มสะโพก.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 25.6,
+"g_total": 51,
+"h_total": 3.6
+},
+{
+"file": "show_v1_shell6_ถาดZLAC_หน้า_เท้าขวา.stl",
+"mat": "PAHT-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 117.1,
+"g_total": 117,
+"h_total": 10.6
+},
+{
+"file": "show_v1_shell6_ถาดZLAC_หลัง_เท้าซ้าย.stl",
+"mat": "PAHT-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 109.6,
+"g_total": 110,
+"h_total": 9.9
+},
+{
+"file": "show_v1_shell6_ปลอกมือจับเอว.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 37.9,
+"g_total": 38,
+"h_total": 5.1
+},
+{
+"file": "show_v1_shell6_หัวมือจับเอว.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 16.1,
+"g_total": 32,
+"h_total": 2.7
+},
+{
+"file": "show_v1_shell6_ถ้วยลำโพงขวา.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 22.5,
+"g_total": 45,
+"h_total": 4.0
+},
+{
+"file": "show_v1_shell6_ปะเก็นลำโพงขวา_TPU.stl",
+"mat": "TPU",
+"n": 2,
+"group": "ยาง",
+"g_each": 4.6,
+"g_total": 9,
+"h_total": 0.9
+},
+{
+"file": "show_v1_shell6_กรอบไมค์_XVF3800.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 10.5,
+"g_total": 10,
+"h_total": 1.2
+},
+{
+"file": "show_v1_shell6_ถาด_Pi5_พัดลม.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 17.0,
+"g_total": 17,
+"h_total": 2.0
+},
+{
+"file": "show_v1_shell6_ถาด_DCDC_5V8A.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 12.1,
+"g_total": 12,
+"h_total": 1.4
+},
+{
+"file": "show_v1_shell6_ถาด_DCDC_12V.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 8.4,
+"g_total": 8,
+"h_total": 1.0
+},
+{
+"file": "show_v1_shell6_ถาด_แอมป์_TPA3110.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 8.1,
+"g_total": 8,
+"h_total": 1.0
+},
+{
+"file": "show_v1_shell6_ถาด_แผงไฟ_ideal_diode_ฟิวส์.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 5.3,
+"g_total": 5,
+"h_total": 0.6
+},
+{
+"file": "show_v1_shell6_ถาด_ESP32_CAN.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "โครง",
+"g_each": 4.4,
+"g_total": 4,
+"h_total": 0.5
+},
+{
+"file": "show_v1_shell6_ถาด_BMSขวา.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "โครง",
+"g_each": 16.3,
+"g_total": 33,
+"h_total": 3.8
+},
+{
+"file": "show_v1_head4_เปลือกขาว_หน้า.stl",
+"mat": "PLA ขาว",
+"n": 1,
+"group": "เปลือก",
+"g_each": 184.4,
+"g_total": 184,
+"h_total": 18.8
+},
+{
+"file": "show_v1_head4_เปลือกขาว_หลัง.stl",
+"mat": "PLA ขาว",
+"n": 1,
+"group": "เปลือก",
+"g_each": 202.3,
+"g_total": 202,
+"h_total": 19.1
+},
+{
+"file": "show_v1_head4_หน้ากากใน.stl",
+"mat": "PLA ดำ",
+"n": 1,
+"group": "เปลือก",
+"g_each": 103.1,
+"g_total": 103,
+"h_total": 11.3
+},
+{
+"file": "show_v1_head4_ฝาหน้า_ตัวแทน.stl",
+"mat": "PC Clear Black",
+"n": 1,
+"group": "หน้า",
+"g_each": 73.9,
+"g_total": 74,
+"h_total": 8.6
+},
+{
+"file": "show_v1_frame_upper_คอบน_โครงหัว.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "คอ",
+"g_each": 155.8,
+"g_total": 156,
+"h_total": 12.8
+},
+{
+"file": "show_v1_frame_upper_ฐานคอ.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "คอ",
+"g_each": 25.4,
+"g_total": 25,
+"h_total": 2.2
+},
+{
+"file": "show_v1_foot1_คานนอก.stl",
+"mat": "PAHT-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 113.6,
+"g_total": 227,
+"h_total": 25.1
+},
+{
+"file": "show_v1_foot1_คานใน.stl",
+"mat": "PAHT-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 113.6,
+"g_total": 227,
+"h_total": 25.1
+},
+{
+"file": "show_v1_foot1_บล็อกข้อเท้า.stl",
+"mat": "PAHT-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 182.4,
+"g_total": 365,
+"h_total": 38.9
+},
+{
+"file": "show_v1_foot1_ซ็อกเก็ตขา.stl",
+"mat": "PAHT-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 127.8,
+"g_total": 256,
+"h_total": 27.6
+},
+{
+"file": "show_v1_foot1_ดรัมข้อเท้า_หน้า.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เท้า",
+"g_each": 90.7,
+"g_total": 181,
+"h_total": 18.5
+},
+{
+"file": "show_v1_foot1_ดรัมข้อเท้า_หลัง.stl",
+"mat": "PLA ดำ",
+"n": 2,
+"group": "เท้า",
+"g_each": 90.2,
+"g_total": 180,
+"h_total": 18.4
+},
+{
+"file": "show_v1_foot1_ฝาปุ่มข้อเท้า.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 31.1,
+"g_total": 62,
+"h_total": 6.4
+},
+{
+"file": "show_v1_foot1_ฝาปลายเพลานอก.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 16.9,
+"g_total": 34,
+"h_total": 3.2
+},
+{
+"file": "show_v1_foot1_รางสายใน.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 64.5,
+"g_total": 129,
+"h_total": 10.9
+},
+{
+"file": "show_v1_foot1_ที่ยึด_ToF_หน้า.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 13.8,
+"g_total": 28,
+"h_total": 2.5
+},
+{
+"file": "show_v1_foot1_ที่ยึด_ToF_หลัง.stl",
+"mat": "PETG-CF",
+"n": 2,
+"group": "เท้า",
+"g_each": 13.8,
+"g_total": 28,
+"h_total": 2.5
+},
+{
+"file": "show_v1_foot1_ยางย่น_TPU.stl",
+"mat": "TPU",
+"n": 2,
+"group": "เท้า",
+"g_each": 22.0,
+"g_total": 44,
+"h_total": 6.1
+},
+{
+"file": "show_v1_foot1_หัวกันยุบ_TPU.stl",
+"mat": "TPU",
+"n": 2,
+"group": "เท้า",
+"g_each": 1.2,
+"g_total": 2,
+"h_total": 0.4
+},
+{
+"file": "show_v1_foot1_หมุดหยุด_M5_ปลอกTPU.stl",
+"mat": "TPU",
+"n": 2,
+"group": "เท้า",
+"g_each": 3.0,
+"g_total": 6,
+"h_total": 1.2
+},
+{
+"file": "show_v1_foot1_TEST_คานทดสอบแขวน_PAHT-CF.stl",
+"mat": "PAHT-CF",
+"n": 1,
+"group": "ทดสอบ",
+"g_each": 113.6,
+"g_total": 114,
+"h_total": 12.6
+},
+{
+"file": "show_v1_chest_tilt_กรอบหน้า.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "จอ",
+"g_each": 68.1,
+"g_total": 68,
+"h_total": 5.9
+},
+{
+"file": "show_v1_chest_tilt_ฝาหลัง.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "จอ",
+"g_each": 70.0,
+"g_total": 70,
+"h_total": 8.1
+},
+{
+"file": "show_v1_chest_tilt_หูขวา.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "จอ",
+"g_each": 10.3,
+"g_total": 10,
+"h_total": 1.1
+},
+{
+"file": "show_v1_chest_tilt_หูซ้าย.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "จอ",
+"g_each": 10.3,
+"g_total": 10,
+"h_total": 1.1
+},
+{
+"file": "show_v1_chest_tilt_แผ่นรองในขวา.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "จอ",
+"g_each": 23.3,
+"g_total": 23,
+"h_total": 2.8
+},
+{
+"file": "show_v1_chest_tilt_แผ่นรองในซ้าย.stl",
+"mat": "PETG-CF",
+"n": 1,
+"group": "จอ",
+"g_each": 18.7,
+"g_total": 19,
+"h_total": 1.6
+},
+{
+"file": "show_v1_chest_tilt_ยางกันชน_ก้ม_TPU.stl",
+"mat": "TPU",
+"n": 1,
+"group": "จอ",
+"g_each": 1.8,
+"g_total": 2,
+"h_total": 0.3
+},
+{
+"file": "show_v1_chest_tilt_ยางกันชน_เงย_TPU.stl",
+"mat": "TPU",
+"n": 1,
+"group": "จอ",
+"g_each": 1.8,
+"g_total": 2,
+"h_total": 0.3
+}
+]
