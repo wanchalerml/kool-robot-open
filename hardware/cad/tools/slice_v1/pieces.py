@@ -53,7 +53,7 @@ for f in sorted(os.listdir(OUT)):
 # กล่องจออก
 for k in ("กรอบหน้า", "ฝาหลัง", "บานพับอก", "แผ่นรองใน"):
     add(f"show_v1_chest_tilt_{k}.stl", "PETG-CF", 1, "petgcf_light", "จอ")
-for k in ("ยางกันชน_ก้ม_TPU",):
+for k in ("ยางกันชน_ก้ม_TPU", "ยางกันชน_เงย_TPU"):
     add(f"show_v1_chest_tilt_{k}.stl", "TPU", 2, "tpu", "จอ")
 for p in P:
     assert os.path.exists(f"{OUT}/{p['file']}"), p["file"]
